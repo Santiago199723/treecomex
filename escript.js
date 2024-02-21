@@ -12,7 +12,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     
     if (validateCPF(cpf)) {
       // Se o CPF estiver em um dos formatos válidos, redireciona para outra página
-      window.location.href = 'fase2.html';
+      window.location.href = 'botoesetapas.html';
     } else {
       document.getElementById('result').innerHTML = 'CPF ou CNPJ não cadastrado ou incorreto. Por favor, insira um CPF ou CNPJ válido!';
     }
