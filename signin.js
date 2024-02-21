@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(() => {
         console.log("Login bem-sucedido.");
         hideLoading();
-        window.location.href = "etapa2.html";
+        window.location.href = "CPF.html";
       })
       .catch(error => {
         console.error("Erro durante o login:", error);
