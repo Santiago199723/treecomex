@@ -1,23 +1,33 @@
 const firebaseConfig = {
   //   copy your firebase config informations
+  apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
+    authDomain: "cadastro-orion-global.firebaseapp.com",
+    databaseURL: "https://cadastro-orion-global-default-rtdb.firebaseio.com",
+    projectId: "cadastro-orion-global",
+    storageBucket: "cadastro-orion-global.appspot.com",
+    messagingSenderId: "687560691012",
+    appId: "1:687560691012:web:5445782a7ee55a429e9b11",
+    measurementId: "G-69FTGZDCGF"
 };
 
 // initialize firebase
 firebase.initializeApp(firebaseConfig);
 
 // reference your database
-var contactFormDB = firebase.database().ref("contactForm");
+var contactFormDB = firebase.database().ref("cadastro-orion-global");
 
-document.getElementById("contactForm").addEventListener("submit", submitForm);
+document.getElementById("cadastro-orion-global").addEventListener("submit", submitForm);
 
 function submitForm(e) {
   e.preventDefault();
 
-  var name = getElementVal("name");
-  var emailid = getElementVal("emailid");
-  var msgContent = getElementVal("msgContent");
+  var nome = getElementVal("nome");
+  var empresa = getElementVal("empresa");
+  var cpf = getElementVal("cpf");
+  var cnpj = getElementVal("cnpj");
 
-  saveMessages(name, emailid, msgContent);
+  saveMessages(nome, empresa, cpf, cnpj);
+
 
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -28,16 +38,17 @@ function submitForm(e) {
   }, 3000);
 
   //   reset the form
-  document.getElementById("contactForm").reset();
+  document.getElementById("cadastro-orion-global").reset();
 }
 
-const saveMessages = (name, emailid, msgContent) => {
+const saveMessages = (nome, empresa, cpf, cnpj) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
-    name: name,
-    emailid: emailid,
-    msgContent: msgContent,
+    name: nome,
+    empresa: empresa,
+    cpf: cpf,
+    cnj: cnpj,
   });
 };
 
