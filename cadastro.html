@@ -11,34 +11,50 @@
 
 <body>
     <div class="container">
-        <form action="" id="cadastro-orion-global">
-            <div class="alert">Suas informações foram enviadas!</div>
-    
+        <form id="cadastro-orion-global">
+
+            <div class="alert" id="mensagem-sucesso" style="display: none;">Suas informações foram enviadas!</div>
+
             <div class="inputBox">
-                <input type="text" id="nome" placeholder="NOME COMPLETO DO PROPRIETÁRIO.." />
+                <input type="text" id="nome" placeholder="NOME COMPLETO DO PROPRIETÁRIO.." required />
             </div>
-    
+
             <div class="inputBox">
-                <input type="text" id="empresa" placeholder="NOME DA EMPRESA.." />
+                <input type="text" id="empresa" placeholder="NOME DA EMPRESA.." required />
             </div>
-    
+
             <div class="inputBox">
-                <input type="text" id="cpf" placeholder="INFORME O CPF.." pattern="\d{11}" title="Por favor, insira só números. Está faltando números!" />
+                <input type="text" id="cpf" placeholder="INFORME O CPF.." pattern="\d{11}" title="Por favor, insira só números. Está faltando números!" required />
             </div>
-    
+
             <div class="inputBox">
                 <input type="text" id="cnpj" placeholder="INFORME O CNPJ (Caso tenha)" pattern="\d{14}" title="Por favor, insira só números. Está faltando números!" />
             </div>
-    
+
             <div class="inputBox">
-                <button type="submit">CONFIRMAR CADASTRO</button>
+                <button type="submit" id="confirmar-cadastro">CONFIRMAR CADASTRO</button>
             </div>
         </form>
     </div>
-    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="./mail.js"></script>
+    <script src="./mailCPF.js"></script>
+
+    <script>
+        // Adiciona evento de envio ao formulário
+        document.getElementById('cadastro-orion-global').addEventListener('submit', function (event) {
+            // Previne o comportamento padrão do formulário (envio)
+            event.preventDefault();
+
+            // Mostra a mensagem de sucesso
+            document.getElementById('mensagem-sucesso').style.display = 'block';
+
+            // Redireciona para outra página após 3 segundos (3000 milissegundos)
+            setTimeout(function () {
+                window.location.href = 'CPF.html';
+            }, 3000);
+        });
+    </script>
 </body>
 
 </html>
