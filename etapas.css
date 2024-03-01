@@ -6,7 +6,23 @@
     box-sizing: border-box;
 }
  
+/* Adicione este estilo para organizar os botões verticalmente */
+a {
+    display: block;
+    margin-bottom: 10px; /* Ajuste conforme necessário */
+  }
 
+  /* Estilo para o contêiner dos botões */
+.button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilo para cada botão */
+  .button-container a {
+    margin-bottom: 30px; /* Ajuste conforme necessário */
+  }
+  
 
 body{
     display: flex;
@@ -43,7 +59,7 @@ a:hover{
 }
 
 a:nth-child(1){
-    filter: hue-rotate(110deg); /* Aplicando a mesma cor do segundo botão ao primeiro */
+    filter: hue-rotate(250deg); /* Aplicando a mesma cor do segundo botão ao primeiro */
 }
 
 a span{

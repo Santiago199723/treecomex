@@ -25,6 +25,11 @@
   border-left: 10px solid #ddd; /* Cor da seta */
 }
 
+.file-name {
+  color: red; /* Define a cor do texto como vermelho */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
 .neumorphic::before {
   content: "";
   position: absolute;
@@ -171,6 +176,11 @@
   </style>
 </head>
 <body>
+  <!-- Link da imagem com a classe adicionada -->
+<a href="https://wa.me/5514991719064?text=Ol%C3%A1%2C+Glaos.+Preciso+de+ajuda+no+sistema." class="link-image support-image" target="_blank">
+  <img src="suporte.png" alt="Link para seu site">
+</a>
+
 
 <!-- Contêiner da logo -->
 <div class="logo-container">
@@ -340,37 +350,44 @@
 <div class="submenu">
   <p>Anexe o arquivo correspondente a opçao concluída:</p>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao1_1_input')">
+    <button class="attach-file-button" onclick="chooseFile('opcao1_1_input')">
       <i class="fa-light fa-paperclip"></i>Anexar Arquivo</button>
-    <label class="attach-file-label" id="opcao1_1_label">COPIA DO CPF</label>
-    <input type="file" id="opcao1_1_input" class="file-input" style="display: none;">
+    <label class="attach-file-label" for="opcao1_1_input" id="opcao1_1_label">COPIA DO CPF </label>
+    <input type="file" id="opcao1_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao1_1_input','opcao1_1_file_name')">
+    <span id="opcao1_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+
   </div>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao2_1_input')">
+    <button class="attach-file-button" onclick="chooseFile('opcao2_1_input')">
       <i class="fa-light fa-paperclip"></i>Anexar Arquivo</button>
-    <label class="attach-file-label" id="opcao2_1_label">CÓPIA DO RG</label>
-    <input type="file" id="opcao2_1_input" class="file-input" style="display: none;">
+    <label class="attach-file-label" for="opcao2_1_input" id="opcao2_1_label">COPIA DO RG</label>
+    <input type="file" id="opcao2_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao2_1_input','opcao2_1_file_name')">
+    <span id="opcao2_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+
   </div>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao3_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label class="attach-file-label" id="opcao3_1_label">CÓPIA DO IRPF</label>
-    <input type="file" id="opcao3_1_input" class="file-input" style="display: none;">
+    <button class="attach-file-button" onclick="chooseFile('opcao3_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo</button>
+    <label class="attach-file-label" for="opcao3_1_input" id="opcao3_1_label">CÓPIA DO IRPF</label>
+    <input type="file" id="opcao3_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao3_1_input','opcao3_1_file_name')">
+    <span id="opcao3_1_file_name" class="file-name"></span><!-- Novo elemento para exibir o nome do arquivo -->
+
   </div>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao4_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label class="attach-file-label" id="opcao4_1_label">COMPROVANTE DE ENDEREÇO</label>
-    <input type="file" id="opcao4_1_input" class="file-input" style="display: none;">
+    <button class="attach-file-button" onclick="chooseFile('opcao4_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo</button>
+    <label class="attach-file-label" for="opcao4_1_input" id="opcao4_1_label">COMPROVANTE DE ENDEREÇO</label>
+    <input type="file" id="opcao4_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao4_1_input','opcao4_1_file_name')">
+    <span id="opcao4_1_file_name" class="file-name"></span><!-- Novo elemento para exibir o nome do arquivo -->
+
   </div>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao5_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label class="attach-file-label" id="opcao5_1_label">CERTIFICADO A1</label>
-    <input type="file" id="opcao5_1_input" class="file-input" style="display: none;">
+    <button class="attach-file-button" onclick="chooseFile('opcao5_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao5_1_input" id="opcao5_1_label">CERTIFICADO A1</label>
+    <input type="file" id="opcao5_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao5_1_input','opcao5_1_file_name')">
+    <span id="opcao5_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+
   </div>
 </div>
 
@@ -379,49 +396,40 @@
 <div id="submenu_botao5" class="submenu">
   <p>Anexe o arquivo correspondente a opçao concluída:</p>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao1_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label id="opcao1_1_label">CONTRATO COM EMPRESA DE REPRESENTACAO</label>
-    <input type="file" id="opcao1_1_input" class="file-input" style="display: none;">
-  </div>
+    <button class="attach-file-button" onclick="chooseFile('opcao6_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao6_1_input" id="opcao6_1_label">CONTRATO COM EMPRESA DE CERTIFICAÇÃO</label>
+    <input type="file" id="opcao6_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao6_1_input','opcao6_1_file_name')">
+    <span id="opcao6_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao2_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label id="opcao2_1_label">CONTRATO COM MERCADO LIVRE</label>
-    <input type="file" id="opcao2_1_input" class="file-input" style="display: none;">
-  </div>
+    <button class="attach-file-button" onclick="chooseFile('opcao7_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao7_1_input" id="opcao7_1_label">CONTRATO COM MERCADO LIVRE</label>
+    <input type="file" id="opcao7_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao7_1_input','opcao7_1_file_name')">
+    <span id="opcao7_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao3_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo</button>
-    <label id="opcao3_1_label">CONTRATO COM AMERICANAS.COM</label>
-    <input type="file" id="opcao3_1_input" class="file-input" style="display: none;">
-  </div>
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao4_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label id="opcao4_1_label">CONTRATO CNOVA</label>
-    <input type="file" id="opcao4_1_input" class="file-input" style="display: none;">
-  </div>
+    <button class="attach-file-button" onclick="chooseFile('opcao8_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao8_1_input" id="opcao8_1_label">CONTRATO COM AMERICANAS.COM</label>
+    <input type="file" id="opcao8_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao8_1_input','opcao8_1_file_name')">
+    <span id="opcao8_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
   <div>
-    <button class="attach-file-button" onclick="attachFile('opcao5_1_input')">
-      <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-    </button>
-    <label id="opcao5_1_label">CONTRATO COM MAGAZINE LUIZA</label>
-    <input type="file" id="opcao5_1_input" class="file-input" style="display: none;">
-  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao9_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao9_1_input" id="opcao9_1_label">CONTRATO COM CNOVA</label>
+    <input type="file" id="opcao9_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao9_1_input','opcao9_1_file_name')">
+    <span id="opcao9_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao10_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao10_1_input" id="opcao10_1_label">CONTRATO COM MAGAZINE LUÍZA</label>
+    <input type="file" id="opcao10_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao10_1_input','opcao10_1_file_name')">
+    <span id="opcao10_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  <div>
   <!-- Adicione os elementos restantes aqui -->
 </div>
-
-
-
-
-<!-- Link da imagem com a classe adicionada -->
-<a href="https://wa.me/5514991719064?text=Ol%C3%A1%2C+Glaos.+Preciso+de+ajuda+no+sistema." class="link-image support-image" target="_blank">
-  <img src="suporte.png" alt="Link para seu site">
-</a>
 
 
 <!-- Scripts Firebase -->
@@ -464,9 +472,143 @@
         button.classList.remove("pending");
         messageDiv.textContent = "";
         localStorage.removeItem(button.id);
+        var fileInputId = button.id + "_input";
+        localStorage.removeItem(fileInputId + "_blob");
+        localStorage.removeItem(fileInputId + "_file");
       }
     }
   }
+
+
+  function chooseFile(inputId) {
+    document.getElementById(inputId).click();
+}
+
+function salvarArquivoAnexado(inputId) {
+    var fileInput = document.getElementById(inputId);
+    var file = fileInput.files[0]; // Obtém o arquivo do input
+
+    localStorage.setItem(inputId + "_file_name", fileName);
+
+    // Verifica se um arquivo foi selecionado
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            // Salva o arquivo no armazenamento local
+            localStorage.setItem(inputId + "_file", event.target.result);
+        };
+        reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
+    }
+}
+
+function handleFileUpload(inputId, linkId) {
+    var fileInput = document.getElementById(inputId);
+    var file = fileInput.files[0]; // Obtém o arquivo do input
+
+    // Verifica se um arquivo foi selecionado
+    if (file) {
+        var fileName = file.name; // Obtém o nome do arquivo
+
+        // Encontra o link correspondente ao linkId
+        var link = document.getElementById(linkId);
+
+        link.textContent = fileName; // Define o texto do link como o nome do arquivo
+        link.href = URL.createObjectURL(file); // Define o URL do link como um objeto URL do arquivo
+        link.download = fileName; // Adiciona o atributo 'download' ao link para permitir o download
+        link.style.display = "inline"; // Exibe o link
+
+        // Salva o nome do arquivo no armazenamento local
+        salvarNomeArquivoAnexado(inputId, fileName);
+    } else {
+        // Se nenhum arquivo for selecionado, limpa o texto do link e oculta o link
+        var link = document.getElementById(linkId);
+        link.textContent = "";
+        link.href = "";
+        link.download = "";
+        link.style.display = "none";
+    }
+}
+
+
+
+document.getElementById("opcao1_1_label").addEventListener("click", function() {
+    var fileName = localStorage.getItem("opcao1_1_input");
+    if (fileName) {
+        var fileBlob = localStorage.getItem("opcao1_1_input_blob");
+        var blob = new Blob([fileBlob], { type: 'application/octet-stream' });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+});
+
+// Event listener para quando um arquivo é selecionado
+document.querySelectorAll('input[type="file"]').forEach(inputFile => {
+    inputFile.addEventListener('change', function(event) {
+        var file = event.target.files[0]; // Obtém o arquivo selecionado
+        var inputId = event.target.getAttribute('id'); // Obtém o ID do input
+
+        // Cria um objeto FileReader para ler o conteúdo do arquivo
+        var reader = new FileReader();
+
+        // Evento disparado quando a leitura do arquivo é concluída
+        reader.onload = function(event) {
+            // Armazena o conteúdo do arquivo no localStorage
+            localStorage.setItem(inputId + "_blob", event.target.result);
+        };
+
+        // Inicia a leitura do arquivo como um Blob
+        reader.readAsDataURL(file);
+    });
+});
+
+// Adiciona um evento de clique aos elementos de nome de arquivo
+document.querySelectorAll('.file-name').forEach(fileName => {
+    fileName.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita o comportamento padrão do clique
+
+        var inputId = this.getAttribute('id').replace('_file_name', '_input'); // Obtém o ID do input correspondente ao nome do arquivo
+        var fileBlob = localStorage.getItem(inputId + "_blob"); // Obtém o Blob do arquivo do localStorage
+        var fileName = this.textContent; // Obtém o nome do arquivo
+
+        if (fileBlob) {
+            // Cria um objeto Blob a partir dos dados armazenados
+            var blob = dataURItoBlob(fileBlob);
+
+            // Cria um URL do objeto Blob
+            var url = window.URL.createObjectURL(blob);
+
+            // Cria um elemento de âncora
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = fileName; // Define o atributo 'download' com o nome do arquivo
+            a.click(); // Aciona o clique no elemento de âncora
+
+        }
+    });
+});
+
+// Função para converter uma string de dados URI em Blob
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+
+
+
+
 
   function toggleOption(option) {
     if (option.checked) {
@@ -476,10 +618,26 @@
     }
   }
 
+// Função para carregar arquivos anexados ao recarregar a página
+function loadAttachedFiles() {
+    var fileInputs = document.querySelectorAll('.file-input');
+    fileInputs.forEach(function(input) {
+        var fileId = input.id;
+        var fileName = localStorage.getItem(fileId + "_file_name");
+        if (fileName) {
+            var fileLink = document.getElementById(fileId + "_file_name");
+            fileLink.textContent = fileName;
+            fileLink.style.display = "inline";
+        }
+    });
+}
+
+
   window.onload = function() {
   var buttons = document.querySelectorAll(".neumorphic");
   var submenu = document.querySelector(".submenu");
   var submenuBotao5 = document.querySelector("#submenu_botao5"); // Adiciona o submenu do botão 5
+  
 
   // Adiciona um event listener a todos os botões
   buttons.forEach(button => {
@@ -489,11 +647,15 @@
       if (button === buttons[0]) {
         toggleSubmenu(button, submenu); // Passa o submenu como argumento para a função
       } else if (button === buttons[4]) { // Verifica se o botão clicado é o botão 5
-        toggleSubmenu(button, submenuBotao5); // Passa o submenu do botão 5 como argumento para a função
+        toggleSubmenu(button, submenuBotao5); // Passa o submenu do botão 5 como argumento para a função]
       }
+      // Carregar arquivos anexados
+    loadAttachedFiles();
     });
 
-    
+  
+
+
 
 
     // Verifica se o botão foi marcado como concluído anteriormente
@@ -507,55 +669,6 @@
     }
   });
 
-  var options = document.querySelectorAll(".submenu input[type='checkbox']");
-  options.forEach(option => {
-    var status = localStorage.getItem(option.id);
-    if (status === "selected") {
-      option.checked = true;
-    }
-    option.addEventListener("change", function() {
-      toggleOption(this);
-    });
-  });
-
-// Função para acionar o input do tipo "file" correspondente quando o botão "Anexar Arquivo" é clicado
-function attachFile(inputId) {
-  var fileInput = document.getElementById(inputId);
-  fileInput.click();
-}
-
-// Adiciona event listeners aos botões "Anexar Arquivo"
-var attachFileButtons = document.querySelectorAll(".attach-file-button");
-
-attachFileButtons.forEach(function(button) {
-  button.addEventListener("click", function() {
-    var fileInput = this.nextElementSibling;
-    fileInput.click();
-  });
-});
-
-// Adiciona event listeners aos botões "Anexar Arquivo"
-document.addEventListener("DOMContentLoaded", function() {
-  var attachFileButtons = document.querySelectorAll(".attach-file-button");
-
-  attachFileButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      var fileInput = this.nextElementSibling;
-      fileInput.click();
-    });
-  });
-});
-
-// Adiciona event listeners aos inputs do tipo "file"
-var fileInputs = document.querySelectorAll(".file-input");
-
-fileInputs.forEach(function(fileInput) {
-  fileInput.addEventListener("change", function() {
-    var fileNameLabel = this.previousElementSibling;
-    var fileName = this.files[0].name;
-    fileNameLabel.textContent = fileName;
-  });
-});
 
 };
 
