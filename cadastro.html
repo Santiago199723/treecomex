@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <form id="cadastro-orion-global">
+        <form action="" id="cadastro-orion-global">
 
             <div class="alert" id="mensagem-sucesso" style="display: none;">Suas informações foram enviadas!</div>
 
@@ -38,21 +38,31 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="./mailCPF.js"></script>
+    <script src="./mail.js"></script>
 
     <script>
-        // Adiciona evento de envio ao formulário
         document.getElementById('cadastro-orion-global').addEventListener('submit', function (event) {
-            // Previne o comportamento padrão do formulário (envio)
-            event.preventDefault();
+            event.preventDefault(); // Evita que o formulário seja enviado por padrão
 
-            // Mostra a mensagem de sucesso
+            // Aqui você pode adicionar lógica para enviar os dados para o Firebase ou realizar outras operações necessárias
+
+            // Exibe a mensagem de sucesso
             document.getElementById('mensagem-sucesso').style.display = 'block';
 
-            // Redireciona para outra página após 3 segundos (3000 milissegundos)
+            // Redireciona para outra página após 2 segundos
             setTimeout(function () {
                 window.location.href = 'CPF.html';
-            }, 3000);
+            }, 2000); // Tempo em milissegundos (2 segundos neste caso)
+            
+        });
+        // Adiciona evento de clique ao botão
+        document.getElementById('confirmar-cadastro').addEventListener('click', function () {
+            // Verifica se o valor digitado é "admin"
+            var nome = document.getElementById('nome').value;
+            if (nome.toLowerCase() === 'admin') {
+                // Redireciona para o site desejado
+                window.location.href = 'https://cadastro-orion-global-default-rtdb.firebaseio.com/';
+            }
         });
     </script>
 </body>
