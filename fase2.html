@@ -127,6 +127,14 @@
 }
 
 
+#submenu_botao6 hr {
+  border: none; /* Remove a borda padrão */
+  height: 3px; /* Define a altura da linha */
+  background-color: #90c2ee; /* Cor da linha */
+  margin: 15px 0; /* Espaçamento acima e abaixo da linha */
+}
+
+
     .neumorphic.active .message {
       background-color: rgba(19, 114, 19, 0.5);
       display: block;
@@ -139,7 +147,7 @@
 
     /* Estilo do submenu */
     .submenu {
-      position: absolute;
+      position: fixed;
       top: calc(100% + 10px);
       left: 50%;
       transform: translateX(-50%);
@@ -300,54 +308,11 @@
     <div class="message">CONCLUÍDO!</div>
     <div class="arrow-right"></div>
   </button>
-  <button type="button" class="neumorphic" id="contratacao_funcionarios">
-    <i class="fa-light fa-users"></i>
-    <span>Contratação de Funcionários</span>
-    <div class="message">PENDENTE</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic" id="site_presenca_online">
-    <i class="fa-light fa-globe"></i>
-    <span>Site e Presença Online</span>
-    <div class="message">PENDENTE</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic last-button" id="parcerias_estrategicas">
-    <i class="fa-light fa-handshake-alt"></i>
-    <span>Parcerias Estratégicas</span>
-    <div class="message">CONCLUÍDO!</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic" id="logistica_transporte">
-    <i class="fa-light fa-plane-departure"></i>
-    <span>Logística de Transporte</span>
-    <div class="message">PENDENTE</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic" id="capital_giro">
-    <i class="fa-light fa-dollar-sign"></i>
-    <span>Capital de Giro</span>
-    <div class="message">CONCLUÍDO!</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic" id="financiamento_investimentos">
-    <i class="fa-light fa-hand-holding-usd"></i>
-    <span>Financiamento e Investimentos</span>
-    <div class="message">PENDENTE</div>
-    <div class="arrow-right"></div>
-  </button>
-  <button type="button" class="neumorphic" id="analise_mercado">
-    <i class="fa-light fa-chart-pie"></i>
-    <span>Análise de Mercado</span>
-    <div class="message">CONCLUÍDO!</div>
-    <div class="arrow-right"></div>
-  </button>
-</div>
   <!-- Adicione outros botões aqui -->
 </div>
 
 <!-- Submenu do primeiro botao -->
-<div class="submenu">
+<div id="submenu_botao1" class="submenu">
   <p>Anexe o arquivo correspondente a opçao concluída:</p>
   <div>
     <button class="attach-file-button" onclick="chooseFile('opcao1_1_input')">
@@ -392,7 +357,7 @@
 </div>
 
 
-<!-- Submenu do botao 5 -->
+
 <div id="submenu_botao5" class="submenu">
   <p>Anexe o arquivo correspondente a opçao concluída:</p>
   <div>
@@ -401,37 +366,115 @@
     <label class="attach-file-label" for="opcao6_1_input" id="opcao6_1_label">CONTRATO COM EMPRESA DE CERTIFICAÇÃO</label>
     <input type="file" id="opcao6_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao6_1_input','opcao6_1_file_name')">
     <span id="opcao6_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
   <div>
     <button class="attach-file-button" onclick="chooseFile('opcao7_1_input')">
       <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
     <label class="attach-file-label" for="opcao7_1_input" id="opcao7_1_label">CONTRATO COM MERCADO LIVRE</label>
     <input type="file" id="opcao7_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao7_1_input','opcao7_1_file_name')">
     <span id="opcao7_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
-  <div>
+  </div>
   <div>
     <button class="attach-file-button" onclick="chooseFile('opcao8_1_input')">
       <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
     <label class="attach-file-label" for="opcao8_1_input" id="opcao8_1_label">CONTRATO COM AMERICANAS.COM</label>
     <input type="file" id="opcao8_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao8_1_input','opcao8_1_file_name')">
     <span id="opcao8_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
-  <div>
+  </div>
   <div>
     <button class="attach-file-button" onclick="chooseFile('opcao9_1_input')">
       <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
     <label class="attach-file-label" for="opcao9_1_input" id="opcao9_1_label">CONTRATO COM CNOVA</label>
     <input type="file" id="opcao9_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao9_1_input','opcao9_1_file_name')">
     <span id="opcao9_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
   <div>
     <button class="attach-file-button" onclick="chooseFile('opcao10_1_input')">
       <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
     <label class="attach-file-label" for="opcao10_1_input" id="opcao10_1_label">CONTRATO COM MAGAZINE LUÍZA</label>
     <input type="file" id="opcao10_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao10_1_input','opcao10_1_file_name')">
     <span id="opcao10_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
-  <div>
-  <!-- Adicione os elementos restantes aqui -->
+  </div>
 </div>
 
-
+<div id="submenu_botao6" class="submenu">
+  <p>Anexe o arquivo correspondente a opçao concluída:</p>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao11_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao11_1_input" id="opcao11_1_label">CONTRATO DRA CLAUDIA (EXONERACAO ALAGOAS) caso tenha</label>
+    <input type="file" id="opcao11_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao11_1_input','opcao11_1_file_name')">
+    <span id="opcao11_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao12_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao12_1_input" id="opcao12_1_label">E-MAIL OU CONTRATO CONTRATACAO AGENTE DE CARGA</label>
+    <input type="file" id="opcao12_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao12_1_input','opcao12_1_file_name')">
+    <span id="opcao12_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao13_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao13_1_input" id="opcao13_1_label">CADASTRO EXPORTADOR (FORNECEDOR)</label>
+    <input type="file" id="opcao13_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao13_1_input','opcao13_1_file_name')">
+    <span id="opcao13_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao14_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao14_1_input" id="opcao14_1_label">CATALOGO DE PRODUTOS</label>
+    <input type="file" id="opcao14_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao14_1_input','opcao14_1_file_name')">
+    <span id="opcao14_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao15_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao15_1_input" id="opcao15_1_label">CATALOGO DE PRODUTOS</label>
+    <input type="file" id="opcao15_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao15_1_input','opcao15_1_file_name')">
+    <span id="opcao15_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao16_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao16_1_input" id="opcao16_1_label">EMAIL OU CONTRATO DE FORNECIMENTO</label>
+    <input type="file" id="opcao16_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao16_1_input','opcao16_1_file_name')">
+    <span id="opcao16_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+</div>
+<hr>
+<div>
+  <button class="attach-file-button" onclick="chooseFile('opcao17_1_input')">
+    <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+  <label class="attach-file-label" for="opcao17_1_input" id="opcao17_1_label">COPIA FICHA CADASTRAL ZEBRA</label>
+  <input type="file" id="opcao17_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao17_1_input','opcao17_1_file_name')">
+  <span id="opcao17_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+</div>
+<div>
+  <button class="attach-file-button" onclick="chooseFile('opcao18_1_input')">
+    <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+  <label class="attach-file-label" for="opcao18_1_input" id="opcao18_1_label">CONTRATO COM DEPACHANTE</label>
+  <input type="file" id="opcao18_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao18_1_input','opcao18_1_file_name')">
+  <span id="opcao18_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+</div>
+<div>
+  <button class="attach-file-button" onclick="chooseFile('opcao19_1_input')">
+    <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+  <label class="attach-file-label" for="opcao19_1_input" id="opcao19_1_label">TELA INCUSAO DESPACHANTE</label>
+  <input type="file" id="opcao19_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao19_1_input','opcao19_1_file_name')">
+  <span id="opcao19_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+</div>
+</div>
+<div id="submenu_botao10" class="submenu">
+  <p>Anexe o arquivo correspondente a opçao concluída:</p>
+  <div>
+    <button class="attach-file-button" onclick="chooseFile('opcao20_1_input')">
+      <i class="fa-light fa-paperclip"></i> Anexar Arquivo </button>
+    <label class="attach-file-label" for="opcao20_1_input" id="opcao20_1_label">TELA BENEFICO FISCAL MATRIZ E FILIAIS</label>
+    <input type="file" id="opcao20_1_input" class="file-input" style="display: none;" onchange="handleFileUpload('opcao20_1_input','opcao20_1_file_name')">
+    <span id="opcao20_1_file_name" class="file-name"></span> <!-- Novo elemento para exibir o nome do arquivo -->
+  </div>
+</div>
+    
 <!-- Scripts Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
@@ -633,30 +676,34 @@ function loadAttachedFiles() {
 }
 
 
-  window.onload = function() {
+
+window.onload = function() {
   var buttons = document.querySelectorAll(".neumorphic");
-  var submenu = document.querySelector(".submenu");
-  var submenuBotao5 = document.querySelector("#submenu_botao5"); // Adiciona o submenu do botão 5
-  
+  var submenuBotao1 = document.querySelector("#submenu_botao1");
+  var submenuBotao5 = document.querySelector("#submenu_botao5");
+  var submenuBotao6 = document.querySelector("#submenu_botao6"); // Adiciona o submenu do botão 6
+  var submenuBotao10 = document.querySelector("#submenu_botao10"); // Adiciona o submenu do botão 10
+
 
   // Adiciona um event listener a todos os botões
-  buttons.forEach(button => {
-    button.addEventListener("click", function(event) {
-      event.stopPropagation(); // Impede a propagação do evento para o documento
-      validateStep(button);
-      if (button === buttons[0]) {
-        toggleSubmenu(button, submenu); // Passa o submenu como argumento para a função
-      } else if (button === buttons[4]) { // Verifica se o botão clicado é o botão 5
-        toggleSubmenu(button, submenuBotao5); // Passa o submenu do botão 5 como argumento para a função]
-      }
-      // Carregar arquivos anexados
+buttons.forEach((button, index) => {
+  button.addEventListener("click", function(event) {
+    event.stopPropagation(); // Impede a propagação do evento para o documento
+    validateStep(button);
+    if (button === buttons[0]) {
+      toggleSubmenu(button, submenuBotao1); // Passa o submenu do botão 1 como argumento para a função
+    } else if (button === buttons[4]) {
+      toggleSubmenu(button, submenuBotao5); // Passa o submenu do botão 5 como argumento para a função
+    } else if (button === buttons[5]) { // Verifica se o botão clicado é o botão 6
+      toggleSubmenu(button, submenuBotao6); // Passa o submenu do botão 6 como argumento para a função
+    } else if (index === 9) { // Passa o submenu do botão 9 como argumento para a função
+      toggleSubmenu(button, submenuBotao10); // Passa o submenu do novo botão como argumento para a função
+    }
+    // Carregar arquivos anexados
     loadAttachedFiles();
-    });
+  });
 
-  
-
-
-
+    
 
     // Verifica se o botão foi marcado como concluído anteriormente
     var status = localStorage.getItem(button.id);
@@ -668,11 +715,8 @@ function loadAttachedFiles() {
       button.querySelector(".message").textContent = "PENDENTE!";
     }
   });
-
-
 };
 
-// Função para mostrar/ocultar o submenu
 function toggleSubmenu(button, submenu) {
   var isVisible = submenu.style.display === "block";
   if (isVisible && submenu.parentNode === button) {
@@ -696,7 +740,7 @@ function toggleSubmenu(button, submenu) {
       submenuLeft = windowWidth - submenuWidth;
     }
 
-    submenu.style.top = button.offsetTop + button.offsetHeight + "px";
+    submenu.style.top = buttonRect.top + button.offsetHeight + "px";
     submenu.style.left = submenuLeft + "px";
     submenu.parentNode.style.position = "relative"; // Atribui posição relativa ao pai do submenu
   }
@@ -704,15 +748,22 @@ function toggleSubmenu(button, submenu) {
 
 // Adiciona um event listener para capturar cliques fora do submenu e fechá-lo
 document.addEventListener("click", function(event) {
-  var submenu = document.querySelector(".submenu");
+  var submenuBotao1 = document.querySelector("#submenu_botao1");
   var submenuBotao5 = document.querySelector("#submenu_botao5");
+  var submenuBotao6 = document.querySelector("#submenu_botao6");
+  var submenuBotao10 = document.querySelector("#submenu_botao10");
+
 
   // Verifica se o clique ocorreu fora do submenu e de seus botões relacionados
-  if (!submenu.contains(event.target) && !submenuBotao5.contains(event.target)) {
-    submenu.style.display = "none"; // Oculta o submenu
+  if (!submenuBotao1.contains(event.target) && !submenuBotao5.contains(event.target) && !submenuBotao6.contains(event.target)&& !submenuBotao10.contains(event.target)) {
+    submenuBotao1.style.display = "none"; // Oculta o submenu do botão 1
     submenuBotao5.style.display = "none"; // Oculta o submenu do botão 5
+    submenuBotao6.style.display = "none"; // Oculta o submenu do botão 6
+    submenuBotao10.style.display = "none"; // Oculta o submenu do botão 10
+
   }
 });
+
 
 
 
