@@ -1,92 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>TELAS DE ETAPAS - TREE COMEX</title>
-  <link rel="stylesheet" href="etapas.css">
-  <!-- Adicione o script do Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TELAS DE ETAPAS - TREE COMEX</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="etapas1.css" />
 
-<body>
-<!-- Contêiner da logo -->
-<div class="logo-container">
-    <img class="logo" src="TREICO.png" alt="Logo">
-</div>
-
-<!-- Informações da empresa -->
-<div class="company-info">
-    <div class="info-item">
-        <span>Empresa:</span>
-        <div class="info-value" id="company-name">NOME DA EMMPRESA</div>
-    </div>
-    <div class="info-item">
-        <span>Tipo (Filial ou Matriz):</span>
-        <div class="info-value" id="company-type">FILIAL OU MATRIZ</div>
-    </div>
-    <div class="info-item">
-        <span>Estado:</span>
-        <div class="info-value" id="company-state">EX: AL</div>
-    </div>
-</div>
-
-<div class="button-container">
-    <a href="etapa1.html">
-        ETAPA 1 - ABERTURA
-    </a>
-    <a href="fase2.html">
-        ETAPA 2 - ESTRUTURA
-    </a>
-    <a href="etapa3.html">
-        ETAPA 3 - CARGAS
-    </a>
-</div>
-
-<button class="back-button" onclick="sair()">Voltar</button>
-
-<script>
-  // Inicialize o Firebase com a configuração do seu projeto
-  const firebaseConfig = {
-  apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
-  authDomain: "cadastro-orion-global.firebaseapp.com",
-  databaseURL: "https://cadastro-orion-global-default-rtdb.firebaseio.com",
-  projectId: "cadastro-orion-global",
-  storageBucket: "cadastro-orion-global.appspot.com",
-  messagingSenderId: "687560691012",
-  appId: "1:687560691012:web:5445782a7ee55a429e9b11",
-  measurementId: "G-69FTGZDCGF"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-
-  // Referência para o banco de dados do Firebase
-  const database = firebase.database();
-
-  // Função para carregar as informações da empresa
-  function carregarInformacoesEmpresa() {
-    const empresaRef = database.ref('cadastro-orion-global');
-
-    empresaRef.once('value', function(snapshot) {
-      const empresa = snapshot.val();
-      if (empresa) {
-        document.getElementById('company-name').innerText = empresa.name;
-        document.getElementById('company-type').innerText = empresa.tipo;
-        document.getElementById('company-state').innerText = empresa.estado;
+    <style>
+      body {
+        background-color: #e5e9f4;
+        padding: 2rem;
+        background: #050801;
       }
-    });
-  }
+    </style>
+  </head>
 
-  // Chamar a função para carregar as informações da empresa quando a página carregar
-  window.onload = function() {
-    carregarInformacoesEmpresa();
-  }
+  <body>
+    <!-- Contêiner da logo -->
+    <div class="logo-container">
+      <img class="logo" src="TREICO.png" alt="Logo" />
+    </div>
 
-  function sair() {
-    // Redirecionar para o index.html
-    window.location.href = 'CPF.html';
-  }
-</script>
+    <!-- Informações da empresa -->
+    <div class="company-info-0">
+      <div class="info-item-0">
+        <div class="info-value-0">
+          <p id="company-name">NOME DA EMMPRESA</p>
+        </div>
+      </div>
+      -
+      <div class="info-item-0">
+        <div class="info-value-0">
+          <p id="company-type">FILIAL OU MATRIZ</p>
+        </div>
+      </div>
+      -
+      <div class="info-item-0">
+        <div class="info-value-0">
+          <p id="company-state">EX: AL</p>
+        </div>
+      </div>
+    </div>
+    <hr style="margin-top: 80px;"/>
+    <div class="button-container">
+      <a href="etapa1.html"> ETAPA 1 - ABERTURA </a>
+      <a href="fase2.html"> ETAPA 2 - ESTRUTURA </a>
+      <a href="etapa3.html"> ETAPA 3 - CARGAS </a>
+    </div>
 
-</body>
+    <button class="back-button" onclick="sair()">Voltar</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
+    <script>
+      const config = {
+        apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
+        authDomain: "cadastro-orion-global.firebaseapp.com",
+        databaseURL:
+          "https://cadastro-orion-global-default-rtdb.firebaseio.com",
+        projectId: "cadastro-orion-global",
+        storageBucket: "cadastro-orion-global.appspot.com",
+        messagingSenderId: "687560691012",
+        appId: "1:687560691012:web:5445782a7ee55a429e9b11",
+        measurementId: "G-69FTGZDCGF",
+      };
+
+      firebase.initializeApp(config);
+
+      window.onload = function () {
+        const database = firebase.database();
+        const empresaRef = database.ref("cadastro-orion-global");
+
+        const uid = localStorage.getItem("uid");
+
+        empresaRef
+          .orderByChild("uid")
+          .equalTo(uid)
+          .once("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+              const data = childSnapshot.val();
+              if (data) {
+                document.getElementById("company-name").innerText =
+                  data.empresa.toUpperCase();
+                document.getElementById("company-type").innerText =
+                  data.tipo.toUpperCase();
+                document.getElementById("company-state").innerText =
+                  data.estado.toUpperCase();
+              }
+            });
+          });
+      };
+
+      function sair() {
+        localStorage.removeItem("uid");
+        window.location.href = "CPF.html";
+      }
+    </script>
+  </body>
 </html>

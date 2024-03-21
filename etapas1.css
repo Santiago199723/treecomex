@@ -36,7 +36,7 @@
 
 hr {
   position: absolute;
-  top: 120px; /* Ajuste conforme necessário */
+  top: 48px; /* Ajuste conforme necessário */
   left: 0;
   width: 100%;
   height: 1px; /* Altura da linha */
@@ -103,7 +103,7 @@ hr {
 .logo-container {
   position: fixed;
   top: 3px;
-  left: 5px;
+  left: 10px;
   z-index: 9999;
 }
 
