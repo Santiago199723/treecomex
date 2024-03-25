@@ -2,9 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>TREE COMEX - CARGAS</title>
+    <title>TREE COMEX - ABERTURA</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="etapas1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <style>
       /* Estilo para o contêiner da logo */
       .logo-container {
@@ -13,34 +17,44 @@
         left: 10px;
         z-index: 9999;
       }
+
       .neumorphic::after {
         content: "";
         position: absolute;
         top: 50%;
-        right: -35px; /* Ajuste a posição conforme necessário */
+        right: -35px;
+        /* Ajuste a posição conforme necessário */
         transform: translateY(-50%);
         width: 0;
         height: 0;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
-        border-left: 10px solid #ddd; /* Cor da seta */
+        border-left: 10px solid #ddd;
+        /* Cor da seta */
       }
 
       .file-name {
-        color: red; /* Define a cor do texto como vermelho */
-        cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        color: red;
+        /* Define a cor do texto como vermelho */
+        cursor: pointer;
+        /* Muda o cursor para indicar que é clicável */
       }
 
       .neumorphic::before {
         content: "";
         position: absolute;
         top: 50%;
-        right: -28px; /* Ajuste a posição conforme necessário */
+        right: -28px;
+        /* Ajuste a posição conforme necessário */
         transform: translateY(-50%);
-        width: 20px; /* Largura do traço */
-        height: 2px; /* Altura do traço */
-        background-color: #ddd; /* Cor do traço */
+        width: 20px;
+        /* Largura do traço */
+        height: 2px;
+        /* Altura do traço */
+        background-color: #ddd;
+        /* Cor do traço */
       }
+
       .neumorphic.last-button .arrow-right,
       .neumorphic.last-button::after,
       .neumorphic.last-button::before {
@@ -49,12 +63,14 @@
 
       /* Estilo para a logo */
       .logo {
-        width: 130px; /* Largura da logo */
-        height: auto; /* Altura automática para manter a proporção */
-        filter: drop-shadow(
-          0 0 10px rgba(203, 248, 249, 0.801)
-        ); /* Sombra na logo */
-        animation: shine 2s infinite alternate; /* Animação de brilho */
+        width: 130px;
+        /* Largura da logo */
+        height: auto;
+        /* Altura automática para manter a proporção */
+        filter: drop-shadow(0 0 10px rgba(203, 248, 249, 0.801));
+        /* Sombra na logo */
+        animation: shine 2s infinite alternate;
+        /* Animação de brilho */
       }
 
       /* Animação de brilho */
@@ -62,6 +78,7 @@
         0% {
           opacity: 0.3;
         }
+
         100% {
           opacity: 1;
         }
@@ -106,19 +123,22 @@
         pointer-events: none;
         display: none;
       }
+
       .attach-file-button {
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
         font-size: 16px;
-        color: #007bff; /* Cor azul para o botão */
+        color: #007bff;
+        /* Cor azul para o botão */
       }
 
       .attach-file-label {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 5px; /* Adicione margem para separar o ícone do texto */
+        margin-left: 5px;
+        /* Adicione margem para separar o ícone do texto */
       }
 
       .file-input {
@@ -126,10 +146,14 @@
       }
 
       #submenu_botao6 hr {
-        border: none; /* Remove a borda padrão */
-        height: 3px; /* Define a altura da linha */
-        background-color: #90c2ee; /* Cor da linha */
-        margin: 15px 0; /* Espaçamento acima e abaixo da linha */
+        border: none;
+        /* Remove a borda padrão */
+        height: 3px;
+        /* Define a altura da linha */
+        background-color: #90c2ee;
+        /* Cor da linha */
+        margin: 15px 0;
+        /* Espaçamento acima e abaixo da linha */
       }
 
       .neumorphic.active .message {
@@ -179,6 +203,7 @@
       }
     </style>
   </head>
+
   <body>
     <!-- Link da imagem com a classe adicionada -->
     <a
@@ -222,44 +247,50 @@
       <div class="buttons">
         <button class="neumorphic" id="cpf_irpf">
           <i class="fa-light fa-user"></i>
-          <span>VOCÊ JÁ POSSUE CPF E IRPF DO PRETENDENTE</span>
+          <span>EMAIL DE INFORMAÇÕES DO EMBARQUE</span>
           <div class="message">CONCLUÍDO!</div>
         </button>
 
         <button type="button" class="neumorphic">
           <!-- Corrigi um erro aqui -->
           <i class="fa-light fa-envelope"></i>
-          <span>EMAIL CONTRATACAO CONTADOR</span>
+          <span>EMAIL DE CONTRATO DO ARMADOR</span>
           <div class="message">PENDENTE</div>
         </button>
         <!-- Adicionei as setas aqui -->
         <button type="button" class="neumorphic" id="locacao_sala">
           <i class="fa-light fa-house"></i>
-          <span>LOCACAO DE SALA</span>
+          <span>EMAIL DO SEGURO DE CARGA</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contratacao_hospedagem">
           <i class="fa-light fa-globe"></i>
-          <span>CONTRATACAO DE HOSPEDAGEM SITE, ETC</span>
+          <span>EMAIL MANIFESTO DA CARGA</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contrato_social">
           <i class="fa-light fa-address-card"></i>
-          <span>CONTRATO SOCIAL (MATRIZ)</span>
+          <span>EXTRATO DO CE</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
           <i class="fa-light fa-earth-americas"></i>
-          <span>HABILITACAO RADAR EXPRESSO</span>
+          <span>EMAIL ARMAZÉM</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>EMAIL SOLICITAÇÃO DE NUMERÁRIO</span>
+          <div class="message">PENDENTE</div>
+          <div class="arrow-right"></div>
+        </button>
+        
         <!-- Submenu do primeiro botao -->
-        <div id="submenu_botao1" class="submenu">
+        <div id="submenu_botao0" class="submenu">
           <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
@@ -272,18 +303,37 @@
               class="attach-file-label"
               for="opcao1_1_input"
               id="opcao1_1_label"
-              >COPIA DO CPF
+              data-opcao="1"
+              data-etapa-tipo="1"
+              >EMAIL DE INFORMAÇÕES DO EMBARQUE
             </label>
             <input
               type="file"
               id="opcao1_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="1"
+              data-etapa-tipo="1"
               onchange="handleFileUpload('opcao1_1_input','opcao1_1_file_name')"
             />
-            <span id="opcao1_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao1_1_file_name"
+              data-opcao="1"
+              data-etapa-tipo="1"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao1_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao1_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao1" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
@@ -295,41 +345,77 @@
               class="attach-file-label"
               for="opcao2_1_input"
               id="opcao2_1_label"
-              >COPIA DO RG</label
             >
+            EMAIL DE CONTRATO DO ARMADOR
+            </label>
             <input
               type="file"
               id="opcao2_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="2"
+              data-etapa-tipo="2"
               onchange="handleFileUpload('opcao2_1_input','opcao2_1_file_name')"
             />
-            <span id="opcao2_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao2_1_file_name"
+              data-opcao="2"
+              data-etapa-tipo="2"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao2_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao2_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao2" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
               onclick="chooseFile('opcao3_1_input')"
             >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+              <i class="fa-light fa-paperclip"></i>Anexar Arquivo
             </button>
             <label
               class="attach-file-label"
               for="opcao3_1_input"
               id="opcao3_1_label"
-              >CÓPIA DO IRPF</label
             >
+            EMAIL DO SEGURO DE CARGA
+            </label>
             <input
               type="file"
               id="opcao3_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="3"
+              data-etapa-tipo="3"
               onchange="handleFileUpload('opcao3_1_input','opcao3_1_file_name')"
             />
-            <span id="opcao3_1_file_name" class="file-name"></span
-            ><!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao3_1_file_name"
+              data-opcao="3"
+              data-etapa-tipo="3"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao3_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao3_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao3" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
@@ -341,18 +427,36 @@
               class="attach-file-label"
               for="opcao4_1_input"
               id="opcao4_1_label"
-              >COMPROVANTE DE ENDEREÇO</label
+            >
+            EMAIL MANIFESTO DA CARGA</label
             >
             <input
               type="file"
               id="opcao4_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="4"
+              data-etapa-tipo="4"
               onchange="handleFileUpload('opcao4_1_input','opcao4_1_file_name')"
             />
-            <span id="opcao4_1_file_name" class="file-name"></span
-            ><!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao4_1_file_name"
+              data-opcao="4"
+              data-etapa-tipo="4"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao3_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao3_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao4" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
@@ -364,20 +468,33 @@
               class="attach-file-label"
               for="opcao5_1_input"
               id="opcao5_1_label"
-              >CERTIFICADO A1</label
+              >EXTRATO DO CE</label
             >
             <input
               type="file"
               id="opcao5_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="5"
+              data-etapa-tipo="5"
               onchange="handleFileUpload('opcao5_1_input','opcao5_1_file_name')"
             />
-            <span id="opcao5_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao5_1_file_name"
+              data-opcao="5"
+              data-etapa-tipo="5"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao5_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao5_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
         </div>
-
         <div id="submenu_botao5" class="submenu">
           <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
@@ -391,18 +508,36 @@
               class="attach-file-label"
               for="opcao6_1_input"
               id="opcao6_1_label"
-              >CONTRATO COM EMPRESA DE CERTIFICAÇÃO</label
+            >
+            EMAIL ARMAZÉM</label
             >
             <input
               type="file"
               id="opcao6_1_input"
               class="file-input"
               style="display: none"
+              data-opcao="6"
+              data-etapa-tipo="6"
               onchange="handleFileUpload('opcao6_1_input','opcao6_1_file_name')"
             />
-            <span id="opcao6_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao6_1_file_name"
+              data-opcao="6"
+              data-etapa-tipo="6"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao6_1_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao6_1_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao6" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
@@ -414,329 +549,21 @@
               class="attach-file-label"
               for="opcao7_1_input"
               id="opcao7_1_label"
-              >CONTRATO COM MERCADO LIVRE</label
+            >
+            EMAIL SOLICITAÇÃO DE NUMERÁRIO</label
             >
             <input
               type="file"
               id="opcao7_1_input"
               class="file-input"
               style="display: none"
-              onchange="handleFileUpload('opcao7_1_input','opcao7_1_file_name')"
-            />
-            <span id="opcao7_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao8_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao8_1_input"
-              id="opcao8_1_label"
-              >CONTRATO COM AMERICANAS.COM</label
-            >
-            <input
-              type="file"
-              id="opcao8_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao8_1_input','opcao8_1_file_name')"
-            />
-            <span id="opcao8_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao9_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao9_1_input"
-              id="opcao9_1_label"
-              >CONTRATO COM CNOVA</label
-            >
-            <input
-              type="file"
-              id="opcao9_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao9_1_input','opcao9_1_file_name')"
-            />
-            <span id="opcao9_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao10_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao10_1_input"
-              id="opcao10_1_label"
-              >CONTRATO COM MAGAZINE LUÍZA</label
-            >
-            <input
-              type="file"
-              id="opcao10_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao10_1_input','opcao10_1_file_name')"
-            />
-            <span id="opcao10_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-        </div>
+              data-opcao="7"
 
-        <div id="submenu_botao6" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao11_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao11_1_input"
-              id="opcao11_1_label"
-              >CONTRATO DRA CLAUDIA (EXONERACAO ALAGOAS) caso tenha</label
-            >
-            <input
-              type="file"
-              id="opcao11_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao11_1_input','opcao11_1_file_name')"
-            />
-            <span id="opcao11_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao12_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao12_1_input"
-              id="opcao12_1_label"
-              >E-MAIL OU CONTRATO CONTRATACAO AGENTE DE CARGA</label
-            >
-            <input
-              type="file"
-              id="opcao12_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao12_1_input','opcao12_1_file_name')"
-            />
-            <span id="opcao12_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao13_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao13_1_input"
-              id="opcao13_1_label"
-              >CADASTRO EXPORTADOR (FORNECEDOR)</label
-            >
-            <input
-              type="file"
-              id="opcao13_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao13_1_input','opcao13_1_file_name')"
-            />
-            <span id="opcao13_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao14_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao14_1_input"
-              id="opcao14_1_label"
-              >CATALOGO DE PRODUTOS</label
-            >
-            <input
-              type="file"
-              id="opcao14_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao14_1_input','opcao14_1_file_name')"
-            />
-            <span id="opcao14_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao15_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao15_1_input"
-              id="opcao15_1_label"
-              >CATALOGO DE PRODUTOS</label
-            >
-            <input
-              type="file"
-              id="opcao15_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao15_1_input','opcao15_1_file_name')"
-            />
-            <span id="opcao15_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao16_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao16_1_input"
-              id="opcao16_1_label"
-              >EMAIL OU CONTRATO DE FORNECIMENTO</label
-            >
-            <input
-              type="file"
-              id="opcao16_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao16_1_input','opcao16_1_file_name')"
-            />
-            <span id="opcao16_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <hr />
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao17_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao17_1_input"
-              id="opcao17_1_label"
-              >COPIA FICHA CADASTRAL ZEBRA</label
-            >
-            <input
-              type="file"
-              id="opcao17_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao17_1_input','opcao17_1_file_name')"
-            />
-            <span id="opcao17_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao18_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao18_1_input"
-              id="opcao18_1_label"
-              >CONTRATO COM DEPACHANTE</label
-            >
-            <input
-              type="file"
-              id="opcao18_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao18_1_input','opcao18_1_file_name')"
-            />
-            <span id="opcao18_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao19_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao19_1_input"
-              id="opcao19_1_label"
-              >TELA INCUSAO DESPACHANTE</label
-            >
-            <input
-              type="file"
-              id="opcao19_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao19_1_input','opcao19_1_file_name')"
-            />
-            <span id="opcao19_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-        </div>
-        <div id="submenu_botao10" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao20_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao20_1_input"
-              id="opcao20_1_label"
-              >TELA BENEFICO FISCAL MATRIZ E FILIAIS</label
-            >
-            <input
-              type="file"
-              id="opcao20_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao20_1_input','opcao20_1_file_name')"
-            />
-            <span id="opcao20_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
+
+          >
         </div>
       </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     <script src="etapas.js"></script>
   </body>

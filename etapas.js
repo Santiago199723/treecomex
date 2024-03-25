@@ -669,6 +669,43 @@ document.addEventListener("click", function (event) {
   }
 });
 
+// Adiciona um event listener para capturar cliques fora do submenu e fechá-lo
+document.addEventListener("click", function (event) {
+  let submenuBotao0 = document.querySelector("#submenu_botao0");
+  let submenuBotao1 = document.querySelector("#submenu_botao1");
+  let submenuBotao2 = document.querySelector("#submenu_botao2");
+  let submenuBotao3 = document.querySelector("#submenu_botao3");
+  let submenuBotao4 = document.querySelector("#submenu_botao4");
+  let submenuBotao5 = document.querySelector("#submenu_botao5");
+  let submenuBotao6 = document.querySelector("#submenu_botao6");
+  let submenuBotao7 = document.querySelector("#submenu_botao7");
+
+  // Verifica se o clique ocorreu fora do submenu e de seus botões relacionados
+  if (
+    !submenuBotao0.contains(event.target) &&
+    !submenuBotao1.contains(event.target) &&
+    !submenuBotao2.contains(event.target) &&
+    !submenuBotao3.contains(event.target) &&
+    !submenuBotao4.contains(event.target) &&
+    !submenuBotao5.contains(event.target) &&
+    !submenuBotao6.contains(event.target) &&
+    !submenuBotao7.contains(event.target) &&
+    !submenuBotao12.contains(event.target)
+  ) {
+    submenuBotao0.style.display = "none"; // Oculta o submenu do botão 0
+    submenuBotao1.style.display = "none"; // Oculta o submenu do botão 1
+    submenuBotao2.style.display = "none"; // Oculta o submenu do botão 2
+    submenuBotao3.style.display = "none"; // Oculta o submenu do botão 3
+    submenuBotao4.style.display = "none"; // Oculta o submenu do botão 4
+    submenuBotao5.style.display = "none"; // Oculta o submenu do botão 5
+    submenuBotao6.style.display = "none"; // Oculta o submenu do botão 6
+    submenuBotao7.style.display = "none"; // Oculta o submenu do botão 7
+
+  }
+});
+
+
+
 const etapas = {
   "DOCUMENTOS PESSOAIS DO SÓCIO": 1,
   "CERTIFICADO DIGITAL DO SÓCIO": 2,
