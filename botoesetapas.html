@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>TELAS DE ETAPAS - TREE COMEX</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="etapas1.css" />
+    <link rel="stylesheet" href="etapas.css" />
 
     <style>
       body {
@@ -42,7 +41,7 @@
         </div>
       </div>
     </div>
-    <hr style="margin-top: 80px;"/>
+    <hr style="margin-top: 60px" />
     <div class="button-container">
       <a href="etapa1.html"> ETAPA 1 - ABERTURA </a>
       <a href="fase2.html"> ETAPA 2 - ESTRUTURA </a>
@@ -70,30 +69,41 @@
 
       window.onload = function () {
         const database = firebase.database();
-        const empresaRef = database.ref("cadastro-orion-global");
+        const ref = database.ref("cadastro-orion-global");
 
         const uid = localStorage.getItem("uid");
 
-        empresaRef
-          .orderByChild("uid")
-          .equalTo(uid)
-          .once("value", function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
-              const data = childSnapshot.val();
-              if (data) {
-                document.getElementById("company-name").innerText =
-                  data.empresa.toUpperCase();
-                document.getElementById("company-type").innerText =
-                  data.tipo.toUpperCase();
-                document.getElementById("company-state").innerText =
-                  data.estado.toUpperCase();
-              }
+        if (!uid) {
+          window.location.href = "/";
+        }
+
+        const code = localStorage.getItem("code");
+
+        const types = ["cpf", "cnpj"];
+
+        for (let i = 0; i < types.length; i++) {
+          ref
+            .orderByChild(types[i])
+            .equalTo(code)
+            .once("value", function (snapshot) {
+              snapshot.forEach(function (childSnapshot) {
+                const data = childSnapshot.val();
+                if (data) {
+                  document.getElementById("company-name").innerText =
+                    data.empresa.toUpperCase();
+                  document.getElementById("company-type").innerText =
+                    data.tipo.toUpperCase();
+                  document.getElementById("company-state").innerText =
+                    data.estado.toUpperCase();
+                }
+              });
             });
-          });
+        }
       };
 
       function sair() {
-        localStorage.removeItem("uid");
+        localStorage.removeItem("email");
+        localStorage.removeItem("code");
         window.location.href = "CPF.html";
       }
     </script>

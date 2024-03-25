@@ -1,45 +1,106 @@
-// Import and configure Firebase
-import firebase from 'firebase/app';
-import 'firebase/auth';
-
-const firebaseConfig = {
-  // Your Firebase config here
+const config = {
+  apiKey: "AIzaSyAgeXs09Qgu8med_u-JVf7ON6IrNxLqYg8",
+  authDomain: "orion-global-comercio.firebaseapp.com",
+  projectId: "orion-global-comercio",
+  storageBucket: "orion-global-comercio.appspot.com",
+  messagingSenderId: "161119988323",
+  appId: "1:161119988323:web:8a6c9d9c517b16669ba656",
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(config);
 
-// Export the auth object
-export const auth = firebase.auth();
+let btn = document.querySelector(".fa-eye");
+let inputSenha = document.querySelector("#senha");
+let msgError = document.querySelector("#msgError");
 
-// Check if the user is authenticated
-auth.onAuthStateChanged((user) => {
-  if (!user) {
-    // User is not logged in
-    alert("Você precisa estar logado para acessar ao indicador! Suporte: https://t.me/+By1fd0M7ZCAwNmFh");
-    window.location.href = "cadastro.html";
+btn.addEventListener("click", () => {
+  if (inputSenha.getAttribute("type") === "password") {
+    inputSenha.setAttribute("type", "text");
   } else {
-    // User is logged in
-    const userLogado = {
-      nome: user.displayName,
-      // Add other user properties as needed
-    };
-
-    const logadoElement = document.querySelector("#logado");
-    const logado = document.querySelector("#logado");
-
-    if (userLogado && userLogado.nome) {
-      logado.innerHTML = `<span style="font-family: 'Verdana', sans-serif; color: #4CAF50; font-size: 0.4em;">Aqui o sucesso é garantido.${userLogado.nome}</span>`;
-    } else {
-      logado.innerHTML = `<span style="font-family: 'Verdana', sans-serif; color: #4CAF50; font-size: 0.4em;">Aqui o sucesso é garantido.</span>`;
-    }
+    inputSenha.setAttribute("type", "password");
   }
 });
 
-// Function to sign out
-function sair() {
-  auth.signOut().then(() => {
-    window.location.href = "signin.html";
-  }).catch((error) => {
-    console.error("Error signing out:", error);
+function showErrorMessage(message) {
+  msgError.style.display = "block";
+  msgError.innerHTML = message;
+}
+
+function hideErrorMessage() {
+  msgError.style.display = "none";
+  msgError.innerHTML = "";
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+async function authorize() {
+  console.log("Tentativa de login iniciada.");
+  hideErrorMessage();
+  showLoading();
+
+  if (!usuario.value || !senha.value) {
+    showErrorMessage("Preencha todos os campos para poder logar.");
+    hideLoading();
+    return;
+  }
+
+  const email = usuario.value;
+  const password = senha.value;
+
+  if (!isValidEmail(email)) {
+    showErrorMessage("Formato de e-mail inválido.");
+    hideLoading();
+    return;
+  }
+
+  console.log("Email:", email);
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password);
+    console.log("Login bem-sucedido.");
+    hideLoading();
+
+    let user = firebase.auth().currentUser;
+
+    return {uid: user.uid, email: email};
+  } catch (err) {
+    console.error("Erro durante o login:", err);
+    hideLoading();
+    const error = JSON.parse(err.message);
+    showErrorMessage(getErrorMessage(error));
+  }
+}
+
+function entrar() {
+  authorize().then((data) => {
+    if (data) {
+      localStorage.setItem("uid", data.uid);
+      localStorage.setItem("email", data.email);
+      window.location.href = "CPF.html";
+    }
   });
+}
+
+const btnEntrar = document.querySelector("#btnEntrar");
+if (btnEntrar) {
+  btnEntrar.addEventListener("click", entrar);
+}
+
+function getErrorMessage(obj) {
+  switch (obj.error.message) {
+    case "auth/user-not-found":
+      return "Usuário não encontrado";
+    case "INVALID_LOGIN_CREDENTIALS":
+      return "Usuário não tem cadastro ou e-mail e senha incorretos.";
+    case "auth/invalid-email":
+      return "Endereço de e-mail inválido";
+    default:
+      return obj.error.message;
+  }
+}
+
+function register() {
+  window.location.href = "pages/register/register.html";
 }

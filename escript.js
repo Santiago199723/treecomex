@@ -27,13 +27,8 @@ document
       return;
     }
 
-    // if (data.trim().toLowerCase() === "admin") {
-    // window.location.href = "https://console.firebase.google.com/u/0/project/cpf-ou-cnpj-tela/authentication/users";
-    // return;
-    // }
-
     document.getElementById("result").innerHTML =
-      "Aguarde, estou verificando no banco de dados...";
+      "Aguarde, já estamos identificando..";
 
     let authorized = false;
 
@@ -42,37 +37,26 @@ document
         "Aguarde, estou verificando no banco de dados...";
     }, 2000);
 
-    ref
-      .orderByChild("cpf")
-      .equalTo(data)
-      .once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-          const result = childSnapshot.val();
-          if (result) {
-            authorized = !authorized;
-            document.getElementById("result").innerHTML =
-              "Validado com sucesso!";
-            window.location.href = "botoesetapas.html";
-            return;
-          }
-        });
-      });
+    const types = ["cpf", "cnpj"];
 
-    ref
-      .orderByChild("cnpj")
-      .equalTo(data)
-      .once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-          const result = childSnapshot.val();
-          if (result) {
-            authorized = !authorized;
-            document.getElementById("result").innerHTML =
-              "Validado com sucesso!";
-            window.location.href = "botoesetapas.html";
-            return;
-          }
+    for (let i = 0; i < types.length; i++) {
+      ref
+        .orderByChild(types[i])
+        .equalTo(data)
+        .once("value", function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            const result = childSnapshot.val();
+            if (result) {
+              authorized = !authorized;
+              localStorage.setItem("code", data);
+              document.getElementById("result").innerHTML =
+                "Validado com sucesso!";
+              window.location.href = "botoesetapas.html";
+              return;
+            }
+          });
         });
-      });
+    }
 
     setTimeout(() => {
       if (!authorized) {

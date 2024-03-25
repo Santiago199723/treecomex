@@ -1,57 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>TREE COMEX - CARGAS</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="etapas.css" />
+    <link rel="stylesheet" href="etapas1.css" />
     <style>
       /* Estilo para o contêiner da logo */
       .logo-container {
         position: fixed;
-        top: 1px;
+        top: 10px;
         left: 10px;
         z-index: 9999;
       }
-
       .neumorphic::after {
         content: "";
         position: absolute;
         top: 50%;
-        right: -35px;
-        /* Ajuste a posição conforme necessário */
+        right: -35px; /* Ajuste a posição conforme necessário */
         transform: translateY(-50%);
         width: 0;
         height: 0;
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
-        border-left: 10px solid #ddd;
-        /* Cor da seta */
+        border-left: 10px solid #ddd; /* Cor da seta */
       }
 
       .file-name {
-        color: red;
-        /* Define a cor do texto como vermelho */
-        cursor: pointer;
-        /* Muda o cursor para indicar que é clicável */
+        color: red; /* Define a cor do texto como vermelho */
+        cursor: pointer; /* Muda o cursor para indicar que é clicável */
       }
 
       .neumorphic::before {
         content: "";
         position: absolute;
         top: 50%;
-        right: -28px;
-        /* Ajuste a posição conforme necessário */
+        right: -28px; /* Ajuste a posição conforme necessário */
         transform: translateY(-50%);
-        width: 20px;
-        /* Largura do traço */
-        height: 2px;
-        /* Altura do traço */
-        background-color: #ddd;
-        /* Cor do traço */
+        width: 20px; /* Largura do traço */
+        height: 2px; /* Altura do traço */
+        background-color: #ddd; /* Cor do traço */
       }
-
       .neumorphic.last-button .arrow-right,
       .neumorphic.last-button::after,
       .neumorphic.last-button::before {
@@ -60,14 +49,12 @@
 
       /* Estilo para a logo */
       .logo {
-        width: 130px;
-        /* Largura da logo */
-        height: auto;
-        /* Altura automática para manter a proporção */
-        filter: drop-shadow(0 0 10px rgba(203, 248, 249, 0.801));
-        /* Sombra na logo */
-        animation: shine 2s infinite alternate;
-        /* Animação de brilho */
+        width: 130px; /* Largura da logo */
+        height: auto; /* Altura automática para manter a proporção */
+        filter: drop-shadow(
+          0 0 10px rgba(203, 248, 249, 0.801)
+        ); /* Sombra na logo */
+        animation: shine 2s infinite alternate; /* Animação de brilho */
       }
 
       /* Animação de brilho */
@@ -75,7 +62,6 @@
         0% {
           opacity: 0.3;
         }
-
         100% {
           opacity: 1;
         }
@@ -120,22 +106,19 @@
         pointer-events: none;
         display: none;
       }
-
       .attach-file-button {
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
         font-size: 16px;
-        color: #007bff;
-        /* Cor azul para o botão */
+        color: #007bff; /* Cor azul para o botão */
       }
 
       .attach-file-label {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 5px;
-        /* Adicione margem para separar o ícone do texto */
+        margin-left: 5px; /* Adicione margem para separar o ícone do texto */
       }
 
       .file-input {
@@ -143,14 +126,10 @@
       }
 
       #submenu_botao6 hr {
-        border: none;
-        /* Remove a borda padrão */
-        height: 3px;
-        /* Define a altura da linha */
-        background-color: #90c2ee;
-        /* Cor da linha */
-        margin: 15px 0;
-        /* Espaçamento acima e abaixo da linha */
+        border: none; /* Remove a borda padrão */
+        height: 3px; /* Define a altura da linha */
+        background-color: #90c2ee; /* Cor da linha */
+        margin: 15px 0; /* Espaçamento acima e abaixo da linha */
       }
 
       .neumorphic.active .message {
@@ -200,7 +179,6 @@
       }
     </style>
   </head>
-
   <body>
     <!-- Link da imagem com a classe adicionada -->
     <a
@@ -244,80 +222,38 @@
       <div class="buttons">
         <button class="neumorphic" id="cpf_irpf">
           <i class="fa-light fa-user"></i>
-          <span>DOCUMENTOS PESSOAIS DO SÓCIO</span>
+          <span>VOCÊ JÁ POSSUE CPF E IRPF DO PRETENDENTE</span>
           <div class="message">CONCLUÍDO!</div>
         </button>
 
         <button type="button" class="neumorphic">
           <!-- Corrigi um erro aqui -->
           <i class="fa-light fa-envelope"></i>
-          <span>CERTIFICADO DIGITAL DO SÓCIO</span>
+          <span>EMAIL CONTRATACAO CONTADOR</span>
           <div class="message">PENDENTE</div>
         </button>
         <!-- Adicionei as setas aqui -->
         <button type="button" class="neumorphic" id="locacao_sala">
           <i class="fa-light fa-house"></i>
-          <span>CONTRATAÇÃO DO CONTADOR</span>
+          <span>LOCACAO DE SALA</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contratacao_hospedagem">
           <i class="fa-light fa-globe"></i>
-          <span>CONTRATACAO DE SALA</span>
+          <span>CONTRATACAO DE HOSPEDAGEM SITE, ETC</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contrato_social">
           <i class="fa-light fa-address-card"></i>
-          <span>E-CNPJ A1 </span>
+          <span>CONTRATO SOCIAL (MATRIZ)</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
           <i class="fa-light fa-earth-americas"></i>
-          <span>ALTERAR CONTA DE ENERGIA PARA NOME DA EMPRESA</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>SOLICITAR INTERNET/TELEFONE</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CONTRATAÇÃO DE ARAMAZÉM LOGÍSTICO</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>COMPRA DE MÓVEIS E ELETRÔNICOS</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>ADEQUAÇÃO VISUAL DA SALA</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CONTRATAÇÃO DE HOSPEDAGEM E DOMÍNIO</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CRIAÇÃO DE EMAILS</span>
-          <div class="message">PENDENTE</div>
-          <div class="arrow-right"></div>
-        </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CRIAÇÃO DE REDES SOCIAIS</span>
+          <span>HABILITACAO RADAR EXPRESSO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
@@ -800,6 +736,7 @@
         </div>
       </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     <script src="etapas.js"></script>
   </body>

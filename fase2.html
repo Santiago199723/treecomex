@@ -1,16 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>TREE COMEX - ESTRUTURA</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="etapas.css" />
+    <link rel="stylesheet" href="etapas1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <style>
       /* Estilo para o contêiner da logo */
       .logo-container {
         position: fixed;
-        top: 1px;
+        top: 10px;
         left: 10px;
         z-index: 9999;
       }
@@ -244,559 +247,617 @@
       <div class="buttons">
         <button class="neumorphic" id="cpf_irpf">
           <i class="fa-light fa-user"></i>
-          <span>DOCUMENTOS PESSOAIS DO SÓCIO</span>
+          <span>DOCUMENTOS DA EMPRESA CONTRATO SOCIAL, CNPJ E IE</span>
           <div class="message">CONCLUÍDO!</div>
         </button>
 
         <button type="button" class="neumorphic">
           <!-- Corrigi um erro aqui -->
           <i class="fa-light fa-envelope"></i>
-          <span>CERTIFICADO DIGITAL DO SÓCIO</span>
+          <span>HABILITAÇÃO DE RADAR</span>
           <div class="message">PENDENTE</div>
         </button>
         <!-- Adicionei as setas aqui -->
         <button type="button" class="neumorphic" id="locacao_sala">
           <i class="fa-light fa-house"></i>
-          <span>CONTRATAÇÃO DO CONTADOR</span>
+          <span>CONTA GRÁFICA</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contratacao_hospedagem">
           <i class="fa-light fa-globe"></i>
-          <span>CONTRATACAO DE SALA</span>
+          <span>CONTRATAÇÃO ADM</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contrato_social">
           <i class="fa-light fa-address-card"></i>
-          <span>E-CNPJ A1 </span>
+          <span>ABERTURA DE CONTA PJ BRADESCO, SANTANDER, ETC</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
           <i class="fa-light fa-earth-americas"></i>
-          <span>ALTERAR CONTA DE ENERGIA PARA NOME DA EMPRESA</span>
+          <span>CONTRATO COM EMPRESAS DE REPRESENTAÇÃO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>SOLICITAR INTERNET/TELEFONE</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO DRA CLAUDIA</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CONTRATAÇÃO DE ARAMAZÉM LOGÍSTICO</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO OPERADOR LOGÍSTICO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>COMPRA DE MÓVEIS E ELETRÔNICOS</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO COM ARMADOR</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>ADEQUAÇÃO VISUAL DA SALA</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO COM SERASA</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CONTRATAÇÃO DE HOSPEDAGEM E DOMÍNIO</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO COM MAINO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CRIAÇÃO DE EMAILS</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO COM A PROSEFTUR</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
-        <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
-          <span>CRIAÇÃO DE REDES SOCIAIS</span>
+        <button type="button" class="neumorphic" id="habilitacao_radar">
+          <i class="fa-light fa-earth-americas"></i>
+          <span>CONTRATO COM TREECOMEX</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
 
         <!-- Submenu do primeiro botao -->
+        <div id="submenu_botao0" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
+          <div>
+            <button
+              class="attach-file-button"
+              onclick="chooseFile('opcao14_2_input')"
+            >
+              <i class="fa-light fa-paperclip"></i>Anexar Arquivo
+            </button>
+            <label
+              class="attach-file-label"
+              for="opcao14_2_input"
+              id="opcao14_2_label"
+              data-opcao="14"
+              data-etapa-tipo="14"
+              >DOCUMENTOS DA EMPRESA CONTRATO SOCIAL, CNPJ E IE
+            </label>
+            <input
+              type="file"
+              id="opcao14_2_input"
+              class="file-input"
+              style="display: none"
+              data-opcao="14"
+              data-etapa-tipo="14"
+              onchange="handleFileUpload('opcao14_2_input','opcao14_2_file_name')"
+            />
+            <span
+              id="opcao14_2_file_name"
+              data-opcao="14"
+              data-etapa-tipo="14"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao14_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao14_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
+          </div>
+        </div>
         <div id="submenu_botao1" class="submenu">
           <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
-              onclick="chooseFile('opcao1_1_input')"
+              onclick="chooseFile('opcao15_2_input')"
             >
               <i class="fa-light fa-paperclip"></i>Anexar Arquivo
             </button>
             <label
               class="attach-file-label"
-              for="opcao1_1_input"
-              id="opcao1_1_label"
-              >COPIA DO CPF
+              for="opcao15_2_input"
+              id="opcao2_1_label"
+            >
+              HABILITAÇÃO DE RADAR
             </label>
             <input
               type="file"
-              id="opcao1_1_input"
+              id="opcao15_2_input"
               class="file-input"
               style="display: none"
-              onchange="handleFileUpload('opcao1_1_input','opcao1_1_file_name')"
+              data-opcao="15"
+              data-etapa-tipo="15"
+              onchange="handleFileUpload('opcao15_2_input','opcao15_2_file_name')"
             />
-            <span id="opcao1_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
+            <span
+              id="opcao15_2_file_name"
+              data-opcao="15"
+              data-etapa-tipo="15"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao15_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao15_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
           </div>
+        </div>
+        <div id="submenu_botao2" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
-              onclick="chooseFile('opcao2_1_input')"
+              onclick="chooseFile('opcao16_2_input')"
             >
               <i class="fa-light fa-paperclip"></i>Anexar Arquivo
             </button>
             <label
               class="attach-file-label"
-              for="opcao2_1_input"
-              id="opcao2_1_label"
-              >COPIA DO RG</label
-            >
-            <input
-              type="file"
-              id="opcao2_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao2_1_input','opcao2_1_file_name')"
-            />
-            <span id="opcao2_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao3_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao3_1_input"
+              for="opcao16_2_input"
               id="opcao3_1_label"
-              >CÓPIA DO IRPF</label
             >
+              CONTA GRÁFICA
+            </label>
             <input
               type="file"
-              id="opcao3_1_input"
+              id="opcao16_2_input"
               class="file-input"
               style="display: none"
-              onchange="handleFileUpload('opcao3_1_input','opcao3_1_file_name')"
+              data-opcao="16"
+              data-etapa-tipo="16"
+              onchange="handleFileUpload('opcao16_2_input','opcao16_2_file_name')"
             />
-            <span id="opcao3_1_file_name" class="file-name"></span
-            ><!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao4_1_input')"
+            <span
+              id="opcao16_2_file_name"
+              data-opcao="16"
+              data-etapa-tipo="16"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao16_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao16_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
             >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao4_1_input"
-              id="opcao4_1_label"
-              >COMPROVANTE DE ENDEREÇO</label
-            >
-            <input
-              type="file"
-              id="opcao4_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao4_1_input','opcao4_1_file_name')"
-            />
-            <span id="opcao4_1_file_name" class="file-name"></span
-            ><!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao5_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao5_1_input"
-              id="opcao5_1_label"
-              >CERTIFICADO A1</label
-            >
-            <input
-              type="file"
-              id="opcao5_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao5_1_input','opcao5_1_file_name')"
-            />
-            <span id="opcao5_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
           </div>
         </div>
-
+        <div id="submenu_botao3" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
+          <div>
+            <button
+              class="attach-file-button"
+              onclick="chooseFile('opcao17_2_input')"
+            >
+              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+            </button>
+            <label
+              class="attach-file-label"
+              for="opcao17_2_input"
+              id="opcao4_1_label"
+            >
+              CONTRATAÇÃO ADM</label
+            >
+            <input
+              type="file"
+              id="opcao17_2_input"
+              class="file-input"
+              style="display: none"
+              data-opcao="17"
+              data-etapa-tipo="17"
+              onchange="handleFileUpload('opcao17_2_input','opcao4_1_file_name')"
+            />
+            <span
+              id="opcao4_1_file_name"
+              data-opcao="17"
+              data-etapa-tipo="17"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao16_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao16_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
+          </div>
+        </div>
+        <div id="submenu_botao4" class="submenu">
+          <p>Anexe o arquivo correspondente a opçao concluída:</p>
+          <div>
+            <button
+              class="attach-file-button"
+              onclick="chooseFile('opcao18_2_input')"
+            >
+              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+            </button>
+            <label
+              class="attach-file-label"
+              for="opcao18_2_input"
+              id="opcao5_1_label"
+              >ABERTURA DE CONTA PJ BRADESCO, SANTANDER, ETC</label
+            >
+            <input
+              type="file"
+              id="opcao18_2_input"
+              class="file-input"
+              style="display: none"
+              data-opcao="18"
+              data-etapa-tipo="18"
+              onchange="handleFileUpload('opcao18_2_input','opcao17_2_file_name')"
+            />
+            <span
+              id="opcao17_2_file_name"
+              data-opcao="18"
+              data-etapa-tipo="18"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao18_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao17_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
+            >
+          </div>
+        </div>
         <div id="submenu_botao5" class="submenu">
           <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
-              onclick="chooseFile('opcao6_1_input')"
+              onclick="chooseFile('opcao19_2_input')"
             >
               <i class="fa-light fa-paperclip"></i> Anexar Arquivo
             </button>
             <label
               class="attach-file-label"
-              for="opcao6_1_input"
+              for="opcao19_2_input"
               id="opcao6_1_label"
-              >CONTRATO COM EMPRESA DE CERTIFICAÇÃO</label
+            >
+              CONTRATO COM EMPRESAS DE REPRESENTAÇÃO</label
             >
             <input
               type="file"
-              id="opcao6_1_input"
+              id="opcao19_2_input"
               class="file-input"
               style="display: none"
-              onchange="handleFileUpload('opcao6_1_input','opcao6_1_file_name')"
+              data-opcao="19"
+              data-etapa-tipo="19"
+              onchange="handleFileUpload('opcao19_2_input','opcao18_2_file_name')"
             />
-            <span id="opcao6_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao7_1_input')"
+            <span
+              id="opcao18_2_file_name"
+              data-opcao="19"
+              data-etapa-tipo="19"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao19_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao18_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
             >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao7_1_input"
-              id="opcao7_1_label"
-              >CONTRATO COM MERCADO LIVRE</label
-            >
-            <input
-              type="file"
-              id="opcao7_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao7_1_input','opcao7_1_file_name')"
-            />
-            <span id="opcao7_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao8_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao8_1_input"
-              id="opcao8_1_label"
-              >CONTRATO COM AMERICANAS.COM</label
-            >
-            <input
-              type="file"
-              id="opcao8_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao8_1_input','opcao8_1_file_name')"
-            />
-            <span id="opcao8_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao9_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao9_1_input"
-              id="opcao9_1_label"
-              >CONTRATO COM CNOVA</label
-            >
-            <input
-              type="file"
-              id="opcao9_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao9_1_input','opcao9_1_file_name')"
-            />
-            <span id="opcao9_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao10_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao10_1_input"
-              id="opcao10_1_label"
-              >CONTRATO COM MAGAZINE LUÍZA</label
-            >
-            <input
-              type="file"
-              id="opcao10_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao10_1_input','opcao10_1_file_name')"
-            />
-            <span id="opcao10_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
           </div>
         </div>
-
         <div id="submenu_botao6" class="submenu">
           <p>Anexe o arquivo correspondente a opçao concluída:</p>
           <div>
             <button
               class="attach-file-button"
-              onclick="chooseFile('opcao11_1_input')"
+              onclick="chooseFile('opcao20_2_input')"
             >
               <i class="fa-light fa-paperclip"></i> Anexar Arquivo
             </button>
             <label
               class="attach-file-label"
-              for="opcao11_1_input"
-              id="opcao11_1_label"
-              >CONTRATO DRA CLAUDIA (EXONERACAO ALAGOAS) caso tenha</label
+              for="opcao20_2_input"
+              id="opcao7_1_label"
+            >
+              CONTRATO DRA CLAUDIA</label
             >
             <input
               type="file"
-              id="opcao11_1_input"
+              id="opcao20_2_input"
               class="file-input"
               style="display: none"
-              onchange="handleFileUpload('opcao11_1_input','opcao11_1_file_name')"
+              data-opcao="20"
+              data-etapa-tipo="20"
+              onchange="handleFileUpload('opcao20_2_input','opcao19_2_file_name')"
             />
-            <span id="opcao11_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao12_1_input')"
+            <span
+              id="opcao19_2_file_name"
+              data-opcao="20"
+              data-etapa-tipo="20"
+              class="file-name"
+            ></span>
+            <i
+              id="opcao20_2_trash"
+              style="display: none; cursor: pointer"
+              onclick="removeArquivo('opcao19_2_file_name')"
+              style="font-size: 24px"
+              class="fa"
+              >&#xf014;</i
             >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao12_1_input"
-              id="opcao12_1_label"
-              >E-MAIL OU CONTRATO CONTRATACAO AGENTE DE CARGA</label
-            >
-            <input
-              type="file"
-              id="opcao12_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao12_1_input','opcao12_1_file_name')"
-            />
-            <span id="opcao12_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao13_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao13_1_input"
-              id="opcao13_1_label"
-              >CADASTRO EXPORTADOR (FORNECEDOR)</label
-            >
-            <input
-              type="file"
-              id="opcao13_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao13_1_input','opcao13_1_file_name')"
-            />
-            <span id="opcao13_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao14_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao14_1_input"
-              id="opcao14_1_label"
-              >CATALOGO DE PRODUTOS</label
-            >
-            <input
-              type="file"
-              id="opcao14_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao14_1_input','opcao14_1_file_name')"
-            />
-            <span id="opcao14_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao15_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao15_1_input"
-              id="opcao15_1_label"
-              >CATALOGO DE PRODUTOS</label
-            >
-            <input
-              type="file"
-              id="opcao15_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao15_1_input','opcao15_1_file_name')"
-            />
-            <span id="opcao15_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao16_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao16_1_input"
-              id="opcao16_1_label"
-              >EMAIL OU CONTRATO DE FORNECIMENTO</label
-            >
-            <input
-              type="file"
-              id="opcao16_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao16_1_input','opcao16_1_file_name')"
-            />
-            <span id="opcao16_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <hr />
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao17_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao17_1_input"
-              id="opcao17_1_label"
-              >COPIA FICHA CADASTRAL ZEBRA</label
-            >
-            <input
-              type="file"
-              id="opcao17_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao17_1_input','opcao17_1_file_name')"
-            />
-            <span id="opcao17_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao18_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao18_1_input"
-              id="opcao18_1_label"
-              >CONTRATO COM DEPACHANTE</label
-            >
-            <input
-              type="file"
-              id="opcao18_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao18_1_input','opcao18_1_file_name')"
-            />
-            <span id="opcao18_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao19_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao19_1_input"
-              id="opcao19_1_label"
-              >TELA INCUSAO DESPACHANTE</label
-            >
-            <input
-              type="file"
-              id="opcao19_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao19_1_input','opcao19_1_file_name')"
-            />
-            <span id="opcao19_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
           </div>
         </div>
-        <div id="submenu_botao10" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao20_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao20_1_input"
-              id="opcao20_1_label"
-              >TELA BENEFICO FISCAL MATRIZ E FILIAIS</label
-            >
-            <input
-              type="file"
-              id="opcao20_1_input"
-              class="file-input"
-              style="display: none"
-              onchange="handleFileUpload('opcao20_1_input','opcao20_1_file_name')"
-            />
-            <span id="opcao20_1_file_name" class="file-name"></span>
-            <!-- Novo elemento para exibir o nome do arquivo -->
-          </div>
+      </div>
+      <div id="submenu_botao7" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao21_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao21_2_input"
+            id="opcao8_1_label"
+          >
+            CONTRATO OPERADOR LOGÍSTICO</label
+          >
+          <input
+            type="file"
+            id="opcao21_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="21"
+            data-etapa-tipo="21"
+            onchange="handleFileUpload('opcao21_2_input','opcao21_2_file_name')"
+          />
+          <span
+            id="opcao21_2_file_name"
+            data-opcao="21"
+            data-etapa-tipo="21"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao21_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao21_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
+        </div>
+      </div>
+      <div id="submenu_botao8" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao22_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao22_2_input"
+            id="opcao9_1_label"
+          >
+            CONTRATO COM ARMADOR</label
+          >
+          <input
+            type="file"
+            id="opcao22_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="22"
+            data-etapa-tipo="22"
+            onchange="handleFileUpload('opcao22_2_input','opcao22_2_file_name')"
+          />
+          <span
+            id="opcao22_2_file_name"
+            data-opcao="22"
+            data-etapa-tipo="22"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao22_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao22_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
+        </div>
+      </div>
+      <div id="submenu_botao9" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao23_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao23_2_input"
+            id="opcao10_1_label"
+          >
+            CONTRATO COM SERASA</label
+          >
+          <input
+            type="file"
+            id="opcao23_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="23"
+            data-etapa-tipo="23"
+            onchange="handleFileUpload('opcao23_2_input','opcao23_2_file_name')"
+          />
+          <span
+            id="opcao23_2_file_name"
+            data-opcao="23"
+            data-etapa-tipo="23"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao23_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao23_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
+        </div>
+      </div>
+      <div id="submenu_botao10" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao24_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao24_2_input"
+            id="opcao11_1_label"
+          >
+            CONTRATO COM MAINO</label
+          >
+          <input
+            type="file"
+            id="opcao24_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="24"
+            data-etapa-tipo="24"
+            onchange="handleFileUpload('opcao24_2_input','opcao24_2_file_name')"
+          />
+          <span
+            id="opcao24_2_file_name"
+            data-opcao="24"
+            data-etapa-tipo="24"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao24_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao24_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
+        </div>
+      </div>
+      <div id="submenu_botao11" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao25_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao25_2_input"
+            id="opcao12_1_label"
+          >
+            CONTRATO COM A PROSEFTUR</label
+          >
+          <input
+            type="file"
+            id="opcao25_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="25"
+            data-etapa-tipo="25"
+            onchange="handleFileUpload('opcao25_2_input','opcao25_2_file_name')"
+          />
+          <span
+            id="opcao25_2_file_name"
+            data-opcao="25"
+            data-etapa-tipo="25"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao25_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao25_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
+        </div>
+      </div>
+      <div id="submenu_botao12" class="submenu">
+        <p>Anexe o arquivo correspondente a opçao concluída:</p>
+        <div>
+          <button
+            class="attach-file-button"
+            onclick="chooseFile('opcao26_2_input')"
+          >
+            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
+          </button>
+          <label
+            class="attach-file-label"
+            for="opcao26_2_input"
+            id="opcao13_1_label"
+          >
+            CONTRATO COM TREECOMEX
+          </label>
+          <input
+            type="file"
+            id="opcao26_2_input"
+            class="file-input"
+            style="display: none"
+            data-opcao="26"
+            data-etapa-tipo="26"
+            onchange="handleFileUpload('opcao26_2_input','opcao26_2_file_name')"
+          />
+          <span
+            id="opcao26_2_file_name"
+            data-opcao="26"
+            data-etapa-tipo="26"
+            class="file-name"
+          ></span>
+          <i
+            id="opcao26_2_trash"
+            style="display: none; cursor: pointer"
+            onclick="removeArquivo('opcao26_2_file_name')"
+            style="font-size: 24px"
+            class="fa"
+            >&#xf014;</i
+          >
         </div>
       </div>
     </div>
