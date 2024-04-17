@@ -1,356 +1,62 @@
 const config = {
-  apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
-  authDomain: "cadastro-orion-global.firebaseapp.com",
-  databaseURL: "https://cadastro-orion-global-default-rtdb.firebaseio.com",
-  projectId: "cadastro-orion-global",
-  storageBucket: "cadastro-orion-global.appspot.com",
-  messagingSenderId: "687560691012",
-  appId: "1:687560691012:web:5445782a7ee55a429e9b11",
-  measurementId: "G-69FTGZDCGF",
+  apiKey: "AIzaSyDXS-uF2k6MLySa0Q_ggo8uGjHMVRd_Ues",
+  authDomain: "cadastro-orion-global-86cb0.firebaseapp.com",
+  databaseURL: "https://cadastro-orion-global-86cb0-default-rtdb.firebaseio.com",
+  projectId: "cadastro-orion-global-86cb0",
+  storageBucket: "cadastro-orion-global-86cb0.appspot.com",
+  messagingSenderId: "899820207666",
+  appId: "1:899820207666:web:140d8fda3aca8e2634062b",
 };
 
 firebase.initializeApp(config);
 
-let database = firebase.database();
-let ref = database.ref("cadastro-orion-global");
+const database = firebase.database();
+const ref = database.ref("cadastro-orion-global");
+const filesRef = database.ref("files");
 
 const types = ["cpf", "cnpj"];
 
+let offsetX, offsetY;
 const uid = localStorage.getItem("uid");
 const code = localStorage.getItem("code");
-const currentEtapaNum = Number(window.location.pathname.match(/[0-9]+/)[0]);
+const csn = Number(window.location.pathname.match(/[0-9]+/)[0]);
 
-function validateStep(button) {
-  let answer = prompt(
-    "VOCÊ JÁ CONCLUIU ESSA ETAPA? digite (SIM/NAO/DESMARCAR)"
-  );
-  if (answer !== null) {
-    answer = answer.toUpperCase();
-    let messageDiv = button.querySelector(".message");
+function handleFileUpload(identifier) {
+  const submenu = document.querySelector("#submenu_botao");
+  const fileInput = submenu.querySelector(".file-input");
 
-    const etapaName = button.querySelector("span").innerHTML;
-    const etapaTipo = getEtapaTipo(etapaName);
+  if (!fileInput.files || fileInput.files.length === 0) return;
 
-    if (answer === "DESMARCAR") {
-      for (let i = 0; i < types.length; i++) {
-        ref
-          .orderByChild(types[i])
-          .equalTo(code)
-          .once("value", (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-              const data = childSnapshot.val();
-              if (data) {
-                const etapaIndex = data.etapas.findIndex(
-                  (d) => d.tipo === etapaTipo && d.etapa == currentEtapaNum
-                );
+  const file = fileInput.files[0];
+  const fileName = file.name;
+  const reader = new FileReader();
 
-                if (etapaIndex !== -1) {
-                  data.etapas.splice(etapaIndex, 1);
-                }
+  reader.onload = function (event) {
+    const fileBlob = event.target.result;
+    const optionType = getOptionType(identifier);
 
-                childSnapshot.ref
-                  .update(data)
-                  .then(() => {
-                    console.log("Data updated successfully");
-                  })
-                  .catch((error) => {
-                    console.error("Error updating data: ", error);
-                  });
-              }
-            });
-          });
-      }
-
-      button.classList.remove("active");
-      button.classList.remove("pending");
-      messageDiv.textContent = "";
-      return;
-    }
-
-    const estado = answer == "SIM" ? "finished" : "pending";
-
-    for (let i = 0; i < types.length; i++) {
-      ref
-        .orderByChild(types[i])
-        .equalTo(code)
-        .once("value", (snapshot) => {
-          snapshot.forEach((childSnapshot) => {
-            const data = childSnapshot.val();
-            if (data) {
-              if (data.etapas && data.etapas.length > 0) {
-                const etapaIndex = data.etapas.findIndex(
-                  (d) => d.tipo === etapaTipo && d.etapa == currentEtapaNum
-                );
-                if (etapaIndex !== -1) {
-                  data.etapas[etapaIndex] = {
-                    ...data.etapas[etapaIndex],
-                    nome: etapaName,
-                    estado: estado,
-                  };
-                } else {
-                  data.etapas.push({
-                    tipo: etapaTipo,
-                    nome: etapaName,
-                    estado: estado,
-                    etapa: currentEtapaNum,
-                  });
-                }
-              } else {
-                data.etapas = [
-                  {
-                    tipo: etapaTipo,
-                    nome: etapaName,
-                    estado: estado,
-                    etapa: currentEtapaNum,
-                  },
-                ];
-              }
-
-              childSnapshot.ref
-                .update(data)
-                .then(() => {
-                  console.log("Data updated successfully");
-                })
-                .catch((error) => {
-                  console.error("Error updating data: ", error);
-                });
-            }
-          });
-        });
-
-      if (estado == "finished") {
-        button.classList.add("active");
-        button.classList.remove("pending");
-        messageDiv.textContent = "CONCLUÍDO!";
-      } else {
-        button.classList.remove("active");
-        button.classList.add("pending");
-        messageDiv.textContent = "PENDENTE!";
-      }
-    }
-  }
-}
-
-function chooseFile(inputId) {
-  document.getElementById(inputId).click();
-}
-
-function handleFileUpload(inputId, linkId) {
-  let fileInput = document.getElementById(inputId);
-  let file = fileInput.files[0]; // Obtém o arquivo do input
-
-  // Verifica se um arquivo foi selecionado
-  if (file) {
-    let fileName = file.name; // Obtém o nome do arquivo
-
-    let reader = new FileReader();
-    reader.onload = function (event) {
-      const opcaoNum = document
-        .getElementById(inputId)
-        .getAttribute("data-opcao");
-      const etapaTipo = document
-        .getElementById(inputId)
-        .getAttribute("data-etapa-tipo");
-      const opcaoTipo = getOpcaoTipo(opcaoNum);
-      const fileBlob = event.target.result;
-
-      for (let i = 0; i < types.length; i++) {
-        ref
-          .orderByChild(types[i])
-          .equalTo(code)
-          .once("value", (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-              const data = childSnapshot.val();
-              if (data) {
-                if (!data.etapas || data.etapas.length == 0) {
-                  data.etapas = [];
-                  const etapaNome = Object.keys(etapas).find(
-                    (key) => etapas[key] === Number(etapaTipo)
-                  );
-                  data.etapas.push({
-                    tipo: Number(etapaTipo),
-                    estado: "unconfirm",
-                    nome: etapaNome,
-                    etapa: currentEtapaNum,
-                    files: [
-                      {
-                        opcaoTipo: opcaoTipo,
-                        arquivoNome: fileName,
-                        fileBlob: fileBlob,
-                        uploadBy:
-                          localStorage.getItem("email") ??
-                          localStorage.getItem("uid"),
-                        time: getFormatedDate(),
-                      },
-                    ],
-                  });
-                } else if (data.etapas && data.etapas.length > 0) {
-                  const etapaIndex = data.etapas.findIndex(
-                    (d) =>
-                      d.tipo === Number(etapaTipo) && d.etapa == currentEtapaNum
-                  );
-                  if (etapaIndex == -1) {
-                    const etapaNome = Object.keys(etapas).find(
-                      (key) => etapas[key] === Number(etapaTipo)
-                    );
-                    data.etapas.push({
-                      tipo: Number(etapaTipo),
-                      estado: "unconfirm",
-                      nome: etapaNome,
-                      etapa: currentEtapaNum,
-                      files: [
-                        {
-                          opcaoTipo: opcaoTipo,
-                          arquivoNome: fileName,
-                          fileBlob: fileBlob,
-                          uploadBy:
-                            localStorage.getItem("email") ??
-                            localStorage.getItem("uid"),
-                          time: getFormatedDate(),
-                        },
-                      ],
-                    });
-                  } else if (etapaIndex !== -1) {
-                    if (!data.etapas[etapaIndex].files) {
-                      data.etapas[etapaIndex].files = [];
-                    }
-                    !data.etapas[etapaIndex].files;
-                    const fileIndex = data.etapas[etapaIndex].files.findIndex(
-                      (file) => file.opcaoTipo === opcaoTipo
-                    );
-                    if (fileIndex !== -1) {
-                      data.etapas[etapaIndex].files[fileIndex] = {
-                        opcaoTipo: opcaoTipo,
-                        arquivoNome: fileName,
-                        fileBlob: fileBlob,
-                        uploadBy:
-                          localStorage.getItem("email") ??
-                          localStorage.getItem("uid"),
-                        time: getFormatedDate(),
-                      };
-                    } else {
-                      data.etapas[etapaIndex].files.push({
-                        opcaoTipo: opcaoTipo,
-                        arquivoNome: fileName,
-                        fileBlob: fileBlob,
-                        uploadBy:
-                          localStorage.getItem("email") ??
-                          localStorage.getItem("uid"),
-                        time: getFormatedDate(),
-                      });
-                    }
-                  }
-                }
-
-                childSnapshot.ref
-                  .update(data)
-                  .then(() => {
-                    // Encontra o link correspondente ao linkId
-                    let link = document.getElementById(linkId);
-                    const trashSel = link.id.replace("_file_name", "_trash");
-                    let trashBtn = document.getElementById(trashSel);
-                    link.textContent = fileName; // Define o texto do link como o nome do arquivo
-                    link.href = URL.createObjectURL(file); // Define o URL do link como um objeto URL do arquivo
-                    link.download = fileName; // Adiciona o atributo 'download' ao link para permitir o download
-                    link.style.display = "inline"; // Exibe o link
-                    trashBtn.style.display = "inline"; // Exibe o botacao
-                    console.log("Data updated successfully");
-                  })
-                  .catch((error) => {
-                    console.error("Error updating data: ", error);
-                  });
-              }
-            });
-          });
-      }
+    const updateData = {
+      identifier: code,
+      optionType: optionType,
+      stageNumber: csn,
+      fileName: fileName,
+      fileBlob: fileBlob,
+      uploadBy: localStorage.getItem("email") || localStorage.getItem("uid"),
+      time: getFormattedDate(),
     };
 
-    reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
-  } else {
-    // Se nenhum arquivo for selecionado, limpa o texto do link e oculta o link
-    let link = document.getElementById(linkId);
-    link.textContent = "";
-    link.href = "";
-    link.download = "";
-    link.style.display = "none";
-  }
+    filesRef
+      .push(updateData)
+      .then(() => {
+        loadSubmenuData(identifier);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  reader.readAsDataURL(file);
 }
-
-// Event listener para quando um arquivo é selecionado
-document.querySelectorAll('input[type="file"]').forEach((inputFile) => {
-  inputFile.addEventListener("change", function (event) {
-    let file = event.target.files[0]; // Obtém o arquivo selecionado
-    let inputId = event.target.getAttribute("id"); // Obtém o ID do input
-
-    // Cria um objeto FileReader para ler o conteúdo do arquivo
-    let reader = new FileReader();
-
-    // Evento disparado quando a leitura do arquivo é concluída
-    reader.onload = function (event) {
-      // Armazena o conteúdo do arquivo no localStorage
-      localStorage.setItem(inputId + "_blob", event.target.result);
-    };
-
-    // Inicia a leitura do arquivo como um Blob
-    reader.readAsDataURL(file);
-  });
-});
-
-// Adiciona um evento de clique aos elementos de nome de arquivo
-document.querySelectorAll(".file-name").forEach((fileName) => {
-  fileName.addEventListener("click", function (event) {
-    event.preventDefault(); // Evita o comportamento padrão do clique
-
-    let sel = this.getAttribute("id"); // Obtém o ID do input correspondente ao nome do arquivo
-    let span = document.getElementById(sel);
-
-    for (let i = 0; i < types.length; i++) {
-      ref
-        .orderByChild(types[i])
-        .equalTo(code)
-        .once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-            const data = childSnapshot.val();
-            if (data) {
-              const etapaTipo = span.getAttribute("data-etapa-tipo");
-              const etapaIndex = data.etapas.findIndex(
-                (d) =>
-                  d.tipo === Number(etapaTipo) && d.etapa == currentEtapaNum
-              );
-              if (etapaIndex !== -1) {
-                let files = data.etapas[etapaIndex].files;
-                if (files) {
-                  const opcaoTipo = getOpcaoTipo(
-                    Number(span.getAttribute("data-opcao"))
-                  );
-                  const fileIndex = files.findIndex(
-                    (d) => d.opcaoTipo === opcaoTipo
-                  );
-                  if (fileIndex !== -1) {
-                    let arquivoNome =
-                      data.etapas[etapaIndex].files[fileIndex].arquivoNome;
-                    let fileBlob =
-                      data.etapas[etapaIndex].files[fileIndex].fileBlob;
-                    // Cria um objeto Blob a partir dos dados armazenados
-                    let blob = dataURItoBlob(fileBlob);
-
-                    // Cria um URL do objeto Blob
-                    let url = window.URL.createObjectURL(blob);
-
-                    // Cria um elemento de âncora
-                    let a = document.createElement("a");
-                    a.href = url;
-                    a.download = arquivoNome; // Define o atributo 'download' com o nome do arquivo
-                    a.click(); // Aciona o clique no elemento de âncora
-                  }
-                }
-              }
-            }
-          });
-        });
-    }
-  });
-});
 
 // Função para converter uma string de dados URI em Blob
 function dataURItoBlob(dataURI) {
@@ -364,74 +70,133 @@ function dataURItoBlob(dataURI) {
   return new Blob([ab], { type: mimeString });
 }
 
-function toggleOption(option) {
-  if (option.checked) {
-    localStorage.setItem(option.id, "selected");
-  } else {
-    localStorage.removeItem(option.id);
+function showSubmenu(identifier) {
+  const submenus = document.querySelectorAll(".submenu");
+  if (submenus[0].style != "flex") {
+    submenus[0].style.display = "flex";
   }
+
+  loadSubmenuData(identifier);
 }
 
 // Função para carregar arquivos anexados ao recarregar a página
-function loadAttachedFiles() {
-  let fileInputs = document.querySelectorAll(".file-input");
-  fileInputs.forEach(function (input) {
-    let fileId = input.id;
-    const fileSel = fileId.replace("_input", "_file_name");
-    const trashSel = fileId.replace("_input", "_trash");
-    let fileLink = document.getElementById(fileSel);
-    let trashBtn = document.getElementById(trashSel);
+function loadSubmenuData(identifier) {
+  const submenu = document.querySelector("#submenu_botao");
+  const containerData = submenu.querySelector(".container-data");
+  
+  let trash = submenu.querySelector("#trash");
+  let attachBtn = submenu.querySelector(".attach-file-button");
+  let input = submenu.querySelector(".file-input");
+  let fileName = submenu.querySelector(".file-name");
+  
+  let uploadTime = containerData.querySelector(".upload-date");
+  let uploadBy = containerData.querySelector(".uploaded-by");
+  let deletedBy = containerData.querySelector(".deleted-by");
+  let deletionDate = containerData.querySelector(".deletion-date");
 
-    for (let i = 0; i < types.length; i++) {
-      ref
-        .orderByChild(types[i])
-        .equalTo(code)
-        .once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-            const data = childSnapshot.val();
-            if (data) {
-              const etapaTipo = fileLink.getAttribute("data-etapa-tipo");
-              const etapaIndex = data.etapas.findIndex(
-                (d) =>
-                  d.tipo === Number(etapaTipo) && d.etapa == currentEtapaNum
-              );
-              if (etapaIndex !== -1) {
-                let files = data.etapas[etapaIndex].files;
-                if (files) {
-                  const opcaoTipo = getOpcaoTipo(
-                    Number(fileLink.getAttribute("data-opcao"))
-                  );
-                  const fileIndex = files.findIndex(
-                    (d) => d.opcaoTipo === opcaoTipo
-                  );
-                  if (fileIndex !== -1) {
-                    fileLink.innerText =
-                      data.etapas[etapaIndex].files[fileIndex].arquivoNome;
-                    try {
-                      fileLink.style.display = "inline";
-                      trashBtn.style.display = "inline";
-                    } catch (_) {}
-                  }
+  trash.style.display = "none";
+  fileName.innerText = "-";
+  
+  uploadTime.innerText = "-";
+  uploadBy.innerText = "-";
+  deletedBy.innerText = "-";
+  deletionDate.innerText = "-";
+
+  attachBtn.onclick = () => input.click();
+  input.onchange = () => handleFileUpload(identifier);
+
+  filesRef
+    .orderByChild("identifier")
+    .equalTo(code)
+    .once("value", (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const file = childSnapshot.val();
+        if (
+          file.stageNumber === csn &&
+          file.optionType === getOptionType(identifier)
+        ) {
+          fileName.innerText = file.fileName;
+          if (file.state === "removed") {
+            deletedBy.innerText = file.deletedBy;
+            deletionDate.innerText = file.deletionDate;
+            fileName.style.display = "flex";
+          } else {
+            trash.onclick = () => removeFile(identifier);
+            fileName.addEventListener("click", () => {
+              const a = document.createElement("a");
+              a.href = URL.createObjectURL(dataURItoBlob(file.fileBlob));
+              a.download = file.fileName;
+              a.click();
+            });
+            fileName.innerText = file.fileName;
+            uploadTime.innerText = file.time;
+            uploadBy.innerText = file.uploadBy;
+            fileName.style.display = "flex";
+            uploadTime.style.display = "flex";
+            uploadBy.style.display = "flex";
+            trash.style.display = "flex";
+          }
+        }
+      });
+    });
+}
+
+function changeButtonColor(button) {
+  types.forEach((type) => {
+    ref
+      .orderByChild(type)
+      .equalTo(code)
+      .once("value", (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          const data = childSnapshot.val();
+          if (data && data.etapas) {
+            const etapaIndex = data.etapas.findIndex(
+              (d) => d.nome === button.innerText && d.etapa === csn
+            );
+            if (etapaIndex !== -1) {
+              const files = data.etapas[etapaIndex].files;
+              if (files) {
+                const fileIndex = files.findIndex(
+                  (d) =>
+                    d.OPCAO_TIPO === button.innerText && d.ESTADO !== "removido"
+                );
+                if (fileIndex !== -1) {
+                  button.style.boxShadow =
+                    "-0.5rem -0.5rem 1rem hsl(183, 72%, 54%), 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5)";
+                } else {
+                  button.style.boxShadow =
+                    "-0.5rem -0.5rem 1rem hsl(0 0% 100% / 0.75), 0.5rem 0.5rem 1rem hsl(0 0% 50% / 0.5)";
                 }
               }
             }
-          });
+          }
         });
-    }
+      });
   });
 }
 
 window.onload = function () {
   if (!uid) {
     window.location.href = "/";
+    return;
   }
 
-  for (let i = 0; i < types.length; i++) {
+  const processID = localStorage.getItem("process-id");
+  if (csn === 2 && !processID) {
+    window.location.href = "/botoesetapas.html";
+    return;
+  } else if (csn === 2) {
+    document.getElementById("current-process").innerText = "Processo:";
+    document.getElementById("current-process-number").innerText = processID;
+    document.querySelector(".current-process-container").style.display = "flex";
+  }
+
+  types.forEach((type) => {
     ref
-      .orderByChild(types[i])
+      .orderByChild(type)
       .equalTo(code)
-      .once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
+      .once("value", (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
           const data = childSnapshot.val();
           if (data) {
             document.getElementById("company-name").innerText =
@@ -440,175 +205,79 @@ window.onload = function () {
               data.tipo.toUpperCase();
             document.getElementById("company-state").innerText =
               data.estado.toUpperCase();
+
+            if (csn === 1) {
+              const creationDate = new Date(data.dataCriacao);
+              const currentDate = new Date();
+              const diff = currentDate - creationDate;
+              const daysPassed = 45 - Math.floor(diff / (1000 * 60 * 60 * 24));
+              const remainingDays = document.querySelector(
+                ".data-restante-container"
+              );
+
+              remainingDays.querySelector(
+                "#hint-text-remaining"
+              ).innerText = `${daysPassed.toString()} dias`;
+              remainingDays.querySelector("#rest-remainer").innerText =
+                "para terminar esta etapa";
+              remainingDays.style.display = "flex";
+            }
           }
         });
       });
-  }
+  });
 
-  let buttons = document.querySelectorAll(".neumorphic");
-  let submenuBotao0 = document.querySelector("#submenu_botao0");
-  let submenuBotao1 = document.querySelector("#submenu_botao1");
-  let submenuBotao2 = document.querySelector("#submenu_botao2");
-  let submenuBotao3 = document.querySelector("#submenu_botao3");
-  let submenuBotao4 = document.querySelector("#submenu_botao4");
-  let submenuBotao5 = document.querySelector("#submenu_botao5");
-  let submenuBotao6 = document.querySelector("#submenu_botao6");
-  let submenuBotao7 = document.querySelector("#submenu_botao7");
-  let submenuBotao8 = document.querySelector("#submenu_botao8");
-  let submenuBotao9 = document.querySelector("#submenu_botao9");
-  let submenuBotao10 = document.querySelector("#submenu_botao10");
-  let submenuBotao11 = document.querySelector("#submenu_botao11");
-  let submenuBotao12 = document.querySelector("#submenu_botao12");
+  const buttons = document.querySelectorAll(".neumorphic");
 
-  // Adiciona um event listener a todos os botões
   buttons.forEach((button, index) => {
-    button.addEventListener("click", function (event) {
-      event.stopPropagation(); // Impede a propagação do evento para o documento
-      validateStep(button);
-      if (button === buttons[0]) {
-        toggleSubmenu(button, submenuBotao0); // Passa o submenu do botão 1 como argumento para a função
-      } else if (button === buttons[1]) {
-        toggleSubmenu(button, submenuBotao1); // Passa o submenu do botão 5 como argumento para a função
-      } else if (button === buttons[2]) {
-        // Verifica se o botão clicado é o botão 6
-        toggleSubmenu(button, submenuBotao2); // Passa o submenu do botão 6 como argumento para a função
-      } else if (button === buttons[3]) {
-        toggleSubmenu(button, submenuBotao3); // Passa o submenu do botão 1 como argumento para a função
-      } else if (button === buttons[4]) {
-        toggleSubmenu(button, submenuBotao4); // Passa o submenu do botão 5 como argumento para a função
-      } else if (button === buttons[5]) {
-        // Verifica se o botão clicado é o botão 6
-        toggleSubmenu(button, submenuBotao5); // Passa o submenu do botão 6 como argumento para a função
-      } else if (button === buttons[6]) {
-        toggleSubmenu(button, submenuBotao6); // Passa o submenu do botão 1 como argumento para a função
-      } else if (button === buttons[7]) {
-        toggleSubmenu(button, submenuBotao7); // Passa o submenu do botão 5 como argumento para a função
-      } else if (button === buttons[8]) {
-        // Verifica se o botão clicado é o botão 6
-        toggleSubmenu(button, submenuBotao8); // Passa o submenu do botão 6 como argumento para a função
-      } else if (button === buttons[9]) {
-        toggleSubmenu(button, submenuBotao9); // Passa o submenu do botão 1 como argumento para a função
-      } else if (button === buttons[10]) {
-        toggleSubmenu(button, submenuBotao10); // Passa o submenu do botão 5 como argumento para a função
-      } else if (button === buttons[11]) {
-        // Verifica se o botão clicado é o botão 6
-        toggleSubmenu(button, submenuBotao11); // Passa o submenu do botão 6 como argumento para a função
-      } else if (button === buttons[12]) {
-        toggleSubmenu(button, submenuBotao12); // Passa o submenu do botão 1 como argumento para a função
-      } else if (button === buttons[13]) {
-        toggleSubmenu(button, submenuBotao13); // Passa o submenu do botão 5 como argumento para a função
-      }
-      // Carregar arquivos anexados
-      loadAttachedFiles();
-    });
+    setInterval(() => {
+      changeButtonColor(button);
+    }, 1000);
 
-    for (let i = 0; i < types.length; i++) {
-      ref
-        .orderByChild(types[i])
-        .equalTo(code)
-        .once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
-            const data = childSnapshot.val();
-            if (data.etapas) {
-              for (let i = 0; i < data.etapas.length; i++) {
-                const etapaNum = data.etapas[i].etapa;
-                if (
-                  button.querySelector("span").innerHTML ==
-                    data.etapas[i].nome &&
-                  etapaNum == currentEtapaNum
-                ) {
-                  if (data.etapas[i].estado !== "unconfirm") {
-                    if (data.etapas[i].estado == "pending") {
-                      button.classList.add("pending");
-                      button.querySelector(".message").textContent =
-                        "PENDENTE!";
-                    } else if (data.etapas[i].estado == "finished") {
-                      button.classList.add("active");
-                      button.querySelector(".message").textContent =
-                        "CONCLUÍDO!";
-                    }
-                  }
-                }
-              }
-            }
-          });
-        });
-    }
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const submenuIndex = index + 1;
+      showSubmenu(submenuIndex);
+    });
   });
 };
 
-function toggleSubmenu(button, submenu) {
-  let isVisible = submenu.style.display === "block";
-  if (isVisible && submenu.parentNode === button) {
-    submenu.style.display = "none";
-  } else {
-    submenu.style.display = "block";
-    let submenuWidth = submenu.offsetWidth;
-    let buttonRect = button.getBoundingClientRect();
-    let buttonRightEdge = buttonRect.right;
-    let windowWidth = window.innerWidth;
-    let submenuLeft;
-
-    // Calcula a largura disponível à direita do botão
-    let availableWidth = windowWidth - buttonRightEdge;
-
-    // Verifica se o submenu cabe à direita do botão
-    if (availableWidth >= submenuWidth) {
-      submenuLeft = buttonRightEdge; // Posição à direita do botão
-    } else {
-      // Se não couber à direita, alinha o canto direito do submenu com o canto direito do botão
-      submenuLeft = windowWidth - submenuWidth;
-    }
-
-    submenu.style.top = buttonRect.top + button.offsetHeight + "px";
-    submenu.style.left = submenuLeft + "px";
-    submenu.parentNode.style.position = "relative"; // Atribui posição relativa ao pai do submenu
-  }
-}
-
-function removeArquivo(sel) {
-  let span = document.getElementById(sel);
-  let resp = confirm("Tem certeza de que deseja excluir o arquivo?");
-  if (resp == true) {
-    for (let i = 0; i < types.length; i++) {
+function removeFile(identifier) {
+  const resp = confirm("Tem certeza de que deseja excluir o arquivo?");
+  if (resp === true) {
+    types.forEach((type) => {
       ref
-        .orderByChild(types[i])
+        .orderByChild(type)
         .equalTo(code)
-        .once("value", function (snapshot) {
-          snapshot.forEach(function (childSnapshot) {
+        .once("value", (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
             const data = childSnapshot.val();
-            if (data) {
-              const etapaTipo = span.getAttribute("data-etapa-tipo");
+            if (data && data.etapas) {
               const etapaIndex = data.etapas.findIndex(
-                (d) =>
-                  d.tipo === Number(etapaTipo) && d.etapa == currentEtapaNum
+                (d) => d.tipo === identifier && d.etapa === csn
               );
               if (etapaIndex !== -1) {
-                let files = data.etapas[etapaIndex].files;
+                const files = data.etapas[etapaIndex].files;
                 if (files && files.length > 0) {
-                  const opcaoTipo = getOpcaoTipo(
-                    Number(span.getAttribute("data-opcao"))
-                  );
                   const fileIndex = files.findIndex(
-                    (d) => d.opcaoTipo === opcaoTipo
+                    (d) => d.OPCAO_TIPO === getOpcaoTipo(identifier)
                   );
                   if (fileIndex !== -1) {
-                    data.etapas[etapaIndex].files.splice(fileIndex, 1);
+                    data.etapas[etapaIndex].files[fileIndex] = {
+                      ARQUIVO_NOME: files[fileIndex].ARQUIVO_NOME,
+                      OPCAO_TIPO: files[fileIndex].OPCAO_TIPO,
+                      ESTADO: "removido",
+                      ARQUIVO_REMOVIDO_POR: localStorage.getItem("email"),
+                      DATA_DA_REMOCAO: getFormatedDate(),
+                    };
                     childSnapshot.ref
                       .update(data)
                       .then(() => {
-                        const trashSel = span.id.replace(
-                          "_file_name",
-                          "_trash"
-                        );
-                        let trashBtn = document.getElementById(trashSel);
-                        span.style.display = "none";
-                        trashBtn.style.display = "none";
-                        alert("Arquivo excluído");
-                        console.log("Data updated successfully");
+                        loadSubmenuData(identifier);
+                        alert("Arquivo excluído com sucesso!");
                       })
                       .catch((error) => {
-                        console.error("Error updating data: ", error);
+                        console.error(error);
                       });
                   }
                 }
@@ -616,95 +285,41 @@ function removeArquivo(sel) {
             }
           });
         });
-    }
+    });
   } else {
-    alert("Operação cancelada");
+    alert("Operação cancelada!");
   }
 }
-// Adiciona um event listener para capturar cliques fora do submenu e fechá-lo
-document.addEventListener("click", function (event) {
-  let submenuBotao0 = document.querySelector("#submenu_botao0");
-  let submenuBotao1 = document.querySelector("#submenu_botao1");
-  let submenuBotao2 = document.querySelector("#submenu_botao2");
-  let submenuBotao3 = document.querySelector("#submenu_botao3");
-  let submenuBotao4 = document.querySelector("#submenu_botao4");
-  let submenuBotao5 = document.querySelector("#submenu_botao5");
-  let submenuBotao6 = document.querySelector("#submenu_botao6");
-  let submenuBotao7 = document.querySelector("#submenu_botao7");
-  let submenuBotao8 = document.querySelector("#submenu_botao8");
-  let submenuBotao9 = document.querySelector("#submenu_botao9");
-  let submenuBotao10 = document.querySelector("#submenu_botao10");
-  let submenuBotao11 = document.querySelector("#submenu_botao11");
-  let submenuBotao12 = document.querySelector("#submenu_botao12");
 
-  // Verifica se o clique ocorreu fora do submenu e de seus botões relacionados
-  if (
-    !submenuBotao0.contains(event.target) &&
-    !submenuBotao1.contains(event.target) &&
-    !submenuBotao2.contains(event.target) &&
-    !submenuBotao3.contains(event.target) &&
-    !submenuBotao4.contains(event.target) &&
-    !submenuBotao5.contains(event.target) &&
-    !submenuBotao6.contains(event.target) &&
-    !submenuBotao7.contains(event.target) &&
-    !submenuBotao8.contains(event.target) &&
-    !submenuBotao9.contains(event.target) &&
-    !submenuBotao10.contains(event.target) &&
-    !submenuBotao11.contains(event.target) &&
-    !submenuBotao12.contains(event.target)
-  ) {
-    submenuBotao0.style.display = "none"; // Oculta o submenu do botão 0
-    submenuBotao1.style.display = "none"; // Oculta o submenu do botão 1
-    submenuBotao2.style.display = "none"; // Oculta o submenu do botão 2
-    submenuBotao3.style.display = "none"; // Oculta o submenu do botão 3
-    submenuBotao4.style.display = "none"; // Oculta o submenu do botão 4
-    submenuBotao5.style.display = "none"; // Oculta o submenu do botão 5
-    submenuBotao6.style.display = "none"; // Oculta o submenu do botão 6
-    submenuBotao7.style.display = "none"; // Oculta o submenu do botão 7
-    submenuBotao8.style.display = "none"; // Oculta o submenu do botão 8
-    submenuBotao9.style.display = "none"; // Oculta o submenu do botão 9
-    submenuBotao10.style.display = "none"; // Oculta o submenu do botão 10
-    submenuBotao11.style.display = "none"; // Oculta o submenu do botão 11
-    submenuBotao12.style.display = "none"; // Oculta o submenu do botão 12
-  }
+let draggable = document.querySelector("#submenu_botao");
+
+function drag(event) {
+  draggable.style.left = event.clientX - offsetX + "px";
+  draggable.style.top = event.clientY - offsetY + "px";
+}
+
+function stopDragging(event) {
+  document.removeEventListener("mousemove", drag);
+  document.removeEventListener("mouseup", stopDragging);
+}
+
+draggable.addEventListener("mousedown", function (event) {
+  event.preventDefault();
+
+  offsetX = event.clientX - draggable.getBoundingClientRect().left;
+  offsetY = event.clientY - draggable.getBoundingClientRect().top;
+
+  document.addEventListener("mousemove", drag);
+
+  document.addEventListener("mouseup", stopDragging);
 });
 
-// Adiciona um event listener para capturar cliques fora do submenu e fechá-lo
 document.addEventListener("click", function (event) {
-  let submenuBotao0 = document.querySelector("#submenu_botao0");
-  let submenuBotao1 = document.querySelector("#submenu_botao1");
-  let submenuBotao2 = document.querySelector("#submenu_botao2");
-  let submenuBotao3 = document.querySelector("#submenu_botao3");
-  let submenuBotao4 = document.querySelector("#submenu_botao4");
-  let submenuBotao5 = document.querySelector("#submenu_botao5");
-  let submenuBotao6 = document.querySelector("#submenu_botao6");
-  let submenuBotao7 = document.querySelector("#submenu_botao7");
-
-  // Verifica se o clique ocorreu fora do submenu e de seus botões relacionados
-  if (
-    !submenuBotao0.contains(event.target) &&
-    !submenuBotao1.contains(event.target) &&
-    !submenuBotao2.contains(event.target) &&
-    !submenuBotao3.contains(event.target) &&
-    !submenuBotao4.contains(event.target) &&
-    !submenuBotao5.contains(event.target) &&
-    !submenuBotao6.contains(event.target) &&
-    !submenuBotao7.contains(event.target) &&
-    !submenuBotao12.contains(event.target)
-  ) {
-    submenuBotao0.style.display = "none"; // Oculta o submenu do botão 0
-    submenuBotao1.style.display = "none"; // Oculta o submenu do botão 1
-    submenuBotao2.style.display = "none"; // Oculta o submenu do botão 2
-    submenuBotao3.style.display = "none"; // Oculta o submenu do botão 3
-    submenuBotao4.style.display = "none"; // Oculta o submenu do botão 4
-    submenuBotao5.style.display = "none"; // Oculta o submenu do botão 5
-    submenuBotao6.style.display = "none"; // Oculta o submenu do botão 6
-    submenuBotao7.style.display = "none"; // Oculta o submenu do botão 7
-
+  const submenuBotao = document.querySelector("#submenu_botao");
+  if (!submenuBotao.contains(event.target)) {
+    submenuBotao.style.display = "none";
   }
 });
-
-
 
 const etapas = {
   "DOCUMENTOS PESSOAIS DO SÓCIO": 1,
@@ -735,44 +350,17 @@ const etapas = {
   "CONTRATO COM TREECOMEX": 26,
 };
 
-const opcao = {
-  1: "DOCUMENTOS PESSOAIS DO SÓCIO",
-  2: "CERTIFICADO DIGITAL DO SÓCIO",
-  3: "CONTRATAÇÃO DO CONTADOR",
-  4: "CONTRATAÇÃO DE SALA",
-  5: "E-CNPJ A1",
-  6: "ALTERAR CONTA DE ENERGIA PARA NOME DA EMPRESA",
-  7: "SOLICITAR INTERNET/TELEFONE",
-  8: "CONTRATAÇÃO DE ARMAZÉM LOGÍSTICO",
-  9: "COMPRA DE MÓVEIS E ELETRÔNICOS",
-  10: "ADEQUAÇÃO VISUAL DA SALA",
-  11: "CONTRATAÇÃO DE HOSPEDAGEM E DOMÍNIO",
-  12: "CRIAÇÃO DE EMAILS",
-  13: "CRIAÇÃO DE REDE SOCIAIS",
-  14: "DOCUMENTOS DA EMPRESA CONTRATO SOCIAL, CNPJ E IE",
-  15: "HABILITAÇÃO DE RADAR",
-  16: "CONTA GRÁFICA",
-  17: "CONTRATAÇÃO ADM",
-  18: "ABERTURA DE CONTA PJ BRADESCO, SANTANDER, ETC",
-  19: "CONTRATO COM EMPRESAS DE REPRESENTAÇÃO",
-  20: "CONTRATO DRA CLAUDIA",
-  21: "CONTRATO OPERADOR LOGÍSTICO",
-  22: "CONTRATO COM ARMADOR",
-  23: "CONTRATO COM SERASA",
-  24: "CONTRATO COM MAINO",
-  25: "CONTRATO COM A PROSEFTUR",
-  26: "CONTRATO COM TREECOMEX",
-};
+function getOptionType(x) {
+  for (let key in etapas) {
+    if (etapas[key] == x) {
+      return key;
+    }
+  }
 
-function getEtapaTipo(x) {
-  return etapas[x];
+  return null;
 }
 
-function getOpcaoTipo(x) {
-  return opcao[x];
-}
-
-function getFormatedDate() {
+function getFormattedDate() {
   let date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;
@@ -784,4 +372,8 @@ function getFormatedDate() {
 
   const fmt = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
   return fmt;
+}
+
+function routeTo(pathName) {
+  window.location.href = pathName;
 }

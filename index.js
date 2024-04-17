@@ -1,10 +1,12 @@
 const config = {
-  apiKey: "AIzaSyAgeXs09Qgu8med_u-JVf7ON6IrNxLqYg8",
-  authDomain: "orion-global-comercio.firebaseapp.com",
-  projectId: "orion-global-comercio",
-  storageBucket: "orion-global-comercio.appspot.com",
-  messagingSenderId: "161119988323",
-  appId: "1:161119988323:web:8a6c9d9c517b16669ba656",
+  apiKey: "AIzaSyAV9yNJNdZyueITfM8OvKhrU2Al_J2VRW0",
+  authDomain: "orion-global-login.firebaseapp.com",
+  databaseURL:
+  "https://orion-global-login-default-rtdb.firebaseio.com",
+  projectId: "orion-global-login",
+  storageBucket: "orion-global-login.appspot.com",
+  messagingSenderId: "789772166465",
+  appId: "1:789772166465:web:be1f5c9962cf5563f6edc0"
 };
 
 firebase.initializeApp(config);

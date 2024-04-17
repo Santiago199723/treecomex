@@ -15,6 +15,19 @@
       /* Importação de fontes do Google */
       @import url("https://fonts.googleapis.com/css2?family=NovaFonte:wght@400&display=swap");
 
+      
+      #linkTrocarSenha {
+        font-size: 11px; /* Tamanho da fonte em pixels */
+        color: #28d8e4; /* Cor azul */
+        text-decoration: none; /* Sem sublinhado */
+        font-family: 'sans-serif';  /* Fonte Dancing Script ou a fonte desejada */
+      }
+
+      #linkTrocarSenha:hover {
+        color: #b2ecf1; /* Cor azul clara ao passar o mouse */
+      }
+
+
       /* Estilo do cabeçalho "Entrar" */
       .login-header {
         text-align: center;
@@ -75,12 +88,12 @@
         <div id="msgError"></div>
 
         <div class="label-float">
-          <input type="text" id="usuario" placeholder="" required />
+          <input type="text" id="usuario" placeholder="" required autocomplete="email"/>
           <label id="userLabel" for="usuario">E-mail</label>
         </div>
 
         <div class="label-float">
-          <input type="password" id="senha" placeholder="" required />
+          <input type="password" id="senha" placeholder="" required autocomplete="current-password"/>
           <label id="senhaLabel" for="senha">Senha</label>
           <i class="fa fa-eye" aria-hidden="true"></i>
         </div>
@@ -90,7 +103,9 @@
         </div>
 
         <!-- Links de cadastro -->
-        <div class="justify-center"></div>
+        <div class="justify-center">
+          <a href="#" id="linkTrocarSenha">Esqueci a senha | Trocar senha</a>
+        </div>
       </div>
     </div>
     <ins
@@ -122,14 +137,32 @@
 
           if (usuario.toLowerCase() === "admin") {
             // Redirecionar para o seu site desejado
-            window.location.href =
-              "https://console.firebase.google.com/u/0/project/win-infinity/authentication/users?hl=pt-br";
+            window.location.href ="cadastro-do-usuario/administracao.html";
           } else {
             // Exibir mensagem de erro caso as credenciais sejam inválidas
             document.getElementById("msgError").innerHTML =
               "Credenciais inválidas. Tente novamente.";
           }
         });
+
+      // Adicione um evento de clique para o link de trocar senha
+      document.getElementById("linkTrocarSenha").addEventListener("click", function(e) {
+        e.preventDefault(); // Impede o comportamento padrão do link
+
+        // Recupere o e-mail do usuário
+        const usuario = document.getElementById("usuario").value.trim();
+
+        // Use a funcionalidade do Firebase para enviar um e-mail de redefinição de senha
+        firebase.auth().sendPasswordResetEmail(usuario)
+          .then(function() {
+            alert("E-mail de redefinição de senha enviado! Verifique sua caixa de entrada.");
+          })
+          .catch(function(error) {
+            // Trate os erros, se houver algum
+            console.error(error);
+            alert("Ocorreu um erro ao enviar o e-mail de redefinição de senha. Por favor, tente novamente.");
+          });
+      });
     </script>
 
     <script>

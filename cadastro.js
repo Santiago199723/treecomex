@@ -1,16 +1,20 @@
 const config = {
-  apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
-  authDomain: "cadastro-orion-global.firebaseapp.com",
-  databaseURL: "https://cadastro-orion-global-default-rtdb.firebaseio.com",
-  projectId: "cadastro-orion-global",
-  storageBucket: "cadastro-orion-global.appspot.com",
-  messagingSenderId: "687560691012",
-  appId: "1:687560691012:web:5445782a7ee55a429e9b11",
-  measurementId: "G-69FTGZDCGF",
+  apiKey: "AIzaSyDXS-uF2k6MLySa0Q_ggo8uGjHMVRd_Ues",
+    authDomain: "cadastro-orion-global-86cb0.firebaseapp.com",
+    databaseURL:
+    "https://cadastro-orion-global-default-rtdb.firebaseio.com",
+    databaseURL: "https://cadastro-orion-global-86cb0-default-rtdb.firebaseio.com",
+    projectId: "cadastro-orion-global-86cb0",
+    storageBucket: "cadastro-orion-global-86cb0.appspot.com",
+    messagingSenderId: "899820207666",
+    appId: "1:899820207666:web:140d8fda3aca8e2634062b" // Adicione esta linha com a URL do seu banco de dados
 };
 
 firebase.initializeApp(config);
-let database = firebase.database()
+let database = firebase.database();
+let ref = database.ref("cadastro-orion-global");
+
+const uid = localStorage.getItem("uid");
 
 // Mapeia os valores dos estados para suas siglas correspondentes
 const estadosSiglas = {
@@ -56,25 +60,53 @@ document
     let tipo = getTipoSelecionado();
     let estado = estadosSiglas[getElementVal("CodUf")];
 
-    saveCPFOrCNPJ(nome, empresa, cpf, cnpj, tipo, estado);
+    let can = true;
 
-    document.querySelector(".alert").style.display = "block";
+    ref
+      .orderByChild("registeredBy")
+      .equalTo(uid)
+      .once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          const data = childSnapshot.val();
+          if (data) {
+            let sel = document.querySelector(".alert");
+            sel.innerHTML = "Ops, você não pode cadastrar mais de uma vez!";
+            sel.style.display = "block";
+            can = false;
+          }
+        });
+      });
 
     setTimeout(() => {
-      document.querySelector(".alert").style.display = "none";
-    }, 3000);
+      if (can) {
+        saveCPFOrCNPJ(nome, empresa, cpf, cnpj, tipo, estado, uid);
 
-    document.getElementById("cadastro-orion-global").reset();
+        document.querySelector(".alert").style.display = "block";
 
-    document.getElementById("mensagem-sucesso").style.display = "block";
+        setTimeout(() => {
+          document.querySelector(".alert").style.display = "none";
+        }, 3000);
 
-    setTimeout(function () {
-      window.location.href = "CPF.html";
+        document.getElementById("cadastro-orion-global").reset();
+
+        document.getElementById("mensagem-sucesso").style.display = "block";
+
+        setTimeout(function () {
+          window.location.href = "CPF.html";
+        }, 2000);
+      }
     }, 2000);
   });
 
-const saveCPFOrCNPJ = (nome, empresa, cpf, cnpj, tipo, estado) => {
-  let ref = database.ref("cadastro-orion-global");
+const saveCPFOrCNPJ = (
+  nome,
+  empresa,
+  cpf,
+  cnpj,
+  tipo,
+  estado,
+  registeredBy
+) => {
   let k = ref.push();
 
   k.set({
@@ -84,6 +116,8 @@ const saveCPFOrCNPJ = (nome, empresa, cpf, cnpj, tipo, estado) => {
     cnpj: cnpj,
     tipo: tipo,
     estado: estado,
+    registeredBy: registeredBy,
+    dataCriacao: new Date().toString(),
   });
 };
 
@@ -100,3 +134,9 @@ function getTipoSelecionado() {
   }
   return null; // Retorna null se nenhum checkbox estiver selecionado
 }
+
+window.onload = function () {
+  if (!uid) {
+    window.location.href = "/";
+  }
+};

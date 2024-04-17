@@ -4,219 +4,27 @@
     <meta charset="UTF-8" />
     <title>TREE COMEX - ABERTURA</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="etapas1.css" />
+    <link rel="stylesheet" href="etapas.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <style>
-      /* Estilo para o contêiner da logo */
-      .logo-container {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        z-index: 9999;
-      }
-
-      .neumorphic::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: -35px;
-        /* Ajuste a posição conforme necessário */
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 10px solid #ddd;
-        /* Cor da seta */
-      }
-
-      .file-name {
-        color: red;
-        /* Define a cor do texto como vermelho */
-        cursor: pointer;
-        /* Muda o cursor para indicar que é clicável */
-      }
-
-      .neumorphic::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: -28px;
-        /* Ajuste a posição conforme necessário */
-        transform: translateY(-50%);
-        width: 20px;
-        /* Largura do traço */
-        height: 2px;
-        /* Altura do traço */
-        background-color: #ddd;
-        /* Cor do traço */
-      }
-
-      .neumorphic.last-button .arrow-right,
-      .neumorphic.last-button::after,
-      .neumorphic.last-button::before {
-        display: none;
-      }
-
-      /* Estilo para a logo */
-      .logo {
-        width: 130px;
-        /* Largura da logo */
-        height: auto;
-        /* Altura automática para manter a proporção */
-        filter: drop-shadow(0 0 10px rgba(203, 248, 249, 0.801));
-        /* Sombra na logo */
-        animation: shine 2s infinite alternate;
-        /* Animação de brilho */
-      }
-
-      /* Animação de brilho */
-      @keyframes shine {
-        0% {
-          opacity: 0.3;
-        }
-
-        100% {
-          opacity: 1;
-        }
-      }
-
-      /* Estilo dos botões neumorphic */
-      .active {
-        background-color: rgba(15, 165, 15, 0.5);
-      }
-
-      .neumorphic {
-        display: inline-block;
-        margin: 10px;
-        padding: 10px 20px;
-        border: 2px solid #ddd;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        position: relative;
-      }
-
-      .neumorphic:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      .neumorphic span {
-        font-size: 16px;
-      }
-
-      .message {
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        transform: translateY(-50%);
-        padding: 5px 10px;
-        color: white;
-        font-style: italic;
-        font-weight: bold;
-        border-radius: 5px;
-        pointer-events: none;
-        display: none;
-      }
-
-      .attach-file-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        font-size: 16px;
-        color: #007bff;
-        /* Cor azul para o botão */
-      }
-
-      .attach-file-label {
-        display: inline-block;
-        vertical-align: middle;
-        margin-left: 5px;
-        /* Adicione margem para separar o ícone do texto */
-      }
-
-      .file-input {
-        display: none;
-      }
-
-      #submenu_botao6 hr {
-        border: none;
-        /* Remove a borda padrão */
-        height: 3px;
-        /* Define a altura da linha */
-        background-color: #90c2ee;
-        /* Cor da linha */
-        margin: 15px 0;
-        /* Espaçamento acima e abaixo da linha */
-      }
-
-      .neumorphic.active .message {
-        background-color: rgba(19, 114, 19, 0.5);
-        display: block;
-      }
-
-      .neumorphic.pending .message {
-        background-color: rgba(0, 0, 255, 0.5);
-        display: block;
-      }
-
-      /* Estilo do submenu */
-      .submenu {
-        position: fixed;
-        top: calc(100% + 10px);
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #fff;
-        border: 4px solid #61eff9;
-        border-radius: 5px;
-        padding: 10px;
-        display: none;
-        z-index: 999;
-      }
-
-      .submenu p {
-        margin: 5px 0;
-      }
-
-      .submenu input[type="checkbox"] {
-        margin-right: 5px;
-      }
-
-      /* Estilo para o link da imagem */
-      .link-image {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        z-index: 9999;
-      }
-
-      .link-image img {
-        width: 60px;
-        height: auto;
-        border-radius: 5px;
-      }
-    </style>
   </head>
 
   <body>
-    <!-- Link da imagem com a classe adicionada -->
-    <a
-      href="https://wa.me/5514991719064?text=Ol%C3%A1%2C+Glaos.+Preciso+de+ajuda+no+sistema."
-      class="link-image support-image"
-      target="_blank"
-    >
-      <img src="suporte.png" alt="Link para seu site" />
-    </a>
+    <button class="back-button" onclick="routeTo('botoesetapas.html')">
+      Voltar
+    </button>
 
     <!-- Contêiner da logo -->
     <div class="logo-container">
       <img class="logo" src="icone.png" alt="Logo" />
+    </div>
+
+    <div class="data-restante-container">
+      <p id="hint-text-remaining"></p>
+      <span style="width: 5px"></span>
+      <p id="rest-remainer"></p>
     </div>
 
     <!-- Informações da empresa -->
@@ -243,621 +51,134 @@
     <div class="main-container">
       <!-- Seu conteúdo HTML existente -->
       <hr />
-      <h1 style="margin-top: 40px; margin-bottom: 40px">ETAPA 1 - ABERTURA</h1>
+      <h1 style="margin-top: 40px; margin-bottom: 60px">ETAPA 1 - ABERTURA</h1>
       <div class="buttons">
         <button class="neumorphic" id="cpf_irpf">
-          <i class="fa-light fa-user"></i>
+          <i class="fa-light fa-folder-open"></i>
           <span>DOCUMENTOS PESSOAIS DO SÓCIO</span>
           <div class="message">CONCLUÍDO!</div>
         </button>
 
         <button type="button" class="neumorphic">
           <!-- Corrigi um erro aqui -->
-          <i class="fa-light fa-envelope"></i>
+          <i class="fa-light fa-certificate"></i>
           <span>CERTIFICADO DIGITAL DO SÓCIO</span>
           <div class="message">PENDENTE</div>
         </button>
         <!-- Adicionei as setas aqui -->
         <button type="button" class="neumorphic" id="locacao_sala">
-          <i class="fa-light fa-house"></i>
+          <i class="fa-light fa-handshake-o"></i>
           <span>CONTRATAÇÃO DO CONTADOR</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contratacao_hospedagem">
-          <i class="fa-light fa-globe"></i>
+          <i class="fa-light fa-home"></i>
           <span>CONTRATAÇÃO DE SALA</span>
           <div class="message">CONCLUÍDO!</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="contrato_social">
-          <i class="fa-light fa-address-card"></i>
+          <i class="fa-light fa-address-card-o"></i>
           <span>E-CNPJ A1</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa fa-bolt"></i>
           <span>ALTERAR CONTA DE ENERGIA PARA NOME DA EMPRESA</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-wifi"></i>
           <span>SOLICITAR INTERNET/TELEFONE</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-industry"></i>
           <span>CONTRATAÇÃO DE ARMAZÉM LOGÍSTICO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-credit-card-alt"></i>
           <span>COMPRA DE MÓVEIS E ELETRÔNICOS</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-thumbs-up"></i>
           <span>ADEQUAÇÃO VISUAL DA SALA</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-cloud"></i>
           <span>CONTRATAÇÃO DE HOSPEDAGEM E DOMÍNIO</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
+          <i class="fa-light fa-at"></i>
           <span>CRIAÇÃO DE EMAILS</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
         <button type="button" class="neumorphic" id="habilitacao_radar">
-          <i class="fa-light fa-earth-americas"></i>
-          <span>CRIAÇÃO DE REDE SOCIAIS</span>
+          <i class="fa-light fa-users"></i>
+          <span>CRIAÇÃO DE REDES SOCIAIS</span>
           <div class="message">PENDENTE</div>
           <div class="arrow-right"></div>
         </button>
 
         <!-- Submenu do primeiro botao -->
-        <div id="submenu_botao0" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
+        <div id="submenu_botao" class="submenu">
+          <div style="display: flex; flex-direction: row">
             <button
               class="attach-file-button"
               onclick="chooseFile('opcao1_1_input')"
             >
-              <i class="fa-light fa-paperclip"></i>Anexar Arquivo
+              <i class="fa-light fa-paperclip"></i> Anexar arquivo
             </button>
+            <span style="width: 10px"></span>
+            <span class="file-name" style="display: none"></span>
+            <span style="width: 10px"></span>
+            <i
+              style="cursor: pointer; display: none; font-size: 24px"
+              class="fa"
+              id="trash"
+              >&#xf014;</i
+            >
             <label
               class="attach-file-label"
               for="opcao1_1_input"
               id="opcao1_1_label"
-              data-opcao="1"
-              data-etapa-tipo="1"
-              >DOCUMENTOS PESSOAIS DO SÓCIO
-            </label>
-            <input
-              type="file"
-              id="opcao1_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="1"
-              data-etapa-tipo="1"
-              onchange="handleFileUpload('opcao1_1_input','opcao1_1_file_name')"
-            />
-            <span
-              id="opcao1_1_file_name"
-              data-opcao="1"
-              data-etapa-tipo="1"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao1_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao1_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
+            ></label>
+            <input type="file" class="file-input" style="display: none" />
           </div>
-        </div>
-        <div id="submenu_botao1" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao2_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i>Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao2_1_input"
-              id="opcao2_1_label"
-            >
-              CERTIFICADO DIGITAL DO SÓCIO
-            </label>
-            <input
-              type="file"
-              id="opcao2_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="2"
-              data-etapa-tipo="2"
-              onchange="handleFileUpload('opcao2_1_input','opcao2_1_file_name')"
-            />
-            <span
-              id="opcao2_1_file_name"
-              data-opcao="2"
-              data-etapa-tipo="2"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao2_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao2_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
+
+          <div class="container-data">
+            <div style="display: flex; flex-direction: row">
+              <p>Data de anexao:</p>
+              <span style="width: 10px"></span>
+              <p class="upload-date">-</p>
+              <span style="width: 15px"></span>
+              <p>Anexado por:</p>
+              <span style="width: 10px"></span>
+              <p class="uploaded-by">-</p>
+            </div>
+            <div style="display: flex; flex-direction: row">
+              <p>Removido por:</p>
+              <span style="width: 10px"></span>
+              <p class="deleted-by">-</p>
+              <span style="width: 15px"></span>
+              <p>Data de exclusao:</p>
+              <span style="width: 10px"></span>
+              <p class="deletion-date">-</p>
+            </div>
           </div>
-        </div>
-        <div id="submenu_botao2" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao3_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i>Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao3_1_input"
-              id="opcao3_1_label"
-            >
-              CONTRATAÇÃO DO CONTADOR
-            </label>
-            <input
-              type="file"
-              id="opcao3_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="3"
-              data-etapa-tipo="3"
-              onchange="handleFileUpload('opcao3_1_input','opcao3_1_file_name')"
-            />
-            <span
-              id="opcao3_1_file_name"
-              data-opcao="3"
-              data-etapa-tipo="3"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao3_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao3_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
-          </div>
-        </div>
-        <div id="submenu_botao3" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao4_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao4_1_input"
-              id="opcao4_1_label"
-            >
-              CONTRATAÇÃO DE SALA</label
-            >
-            <input
-              type="file"
-              id="opcao4_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="4"
-              data-etapa-tipo="4"
-              onchange="handleFileUpload('opcao4_1_input','opcao4_1_file_name')"
-            />
-            <span
-              id="opcao4_1_file_name"
-              data-opcao="4"
-              data-etapa-tipo="4"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao3_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao3_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
-          </div>
-        </div>
-        <div id="submenu_botao4" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao5_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao5_1_input"
-              id="opcao5_1_label"
-              >E-CNPJ A1</label
-            >
-            <input
-              type="file"
-              id="opcao5_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="5"
-              data-etapa-tipo="5"
-              onchange="handleFileUpload('opcao5_1_input','opcao5_1_file_name')"
-            />
-            <span
-              id="opcao5_1_file_name"
-              data-opcao="5"
-              data-etapa-tipo="5"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao5_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao5_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
-          </div>
-        </div>
-        <div id="submenu_botao5" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao6_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao6_1_input"
-              id="opcao6_1_label"
-            >
-              ALTERAR CONTA DE ENERGIA PARA NOME DA EMPRESA</label
-            >
-            <input
-              type="file"
-              id="opcao6_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="6"
-              data-etapa-tipo="6"
-              onchange="handleFileUpload('opcao6_1_input','opcao6_1_file_name')"
-            />
-            <span
-              id="opcao6_1_file_name"
-              data-opcao="6"
-              data-etapa-tipo="6"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao6_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao6_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
-          </div>
-        </div>
-        <div id="submenu_botao6" class="submenu">
-          <p>Anexe o arquivo correspondente a opçao concluída:</p>
-          <div>
-            <button
-              class="attach-file-button"
-              onclick="chooseFile('opcao7_1_input')"
-            >
-              <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-            </button>
-            <label
-              class="attach-file-label"
-              for="opcao7_1_input"
-              id="opcao7_1_label"
-            >
-              SOLICITAR INTERNET/TELEFONE</label
-            >
-            <input
-              type="file"
-              id="opcao7_1_input"
-              class="file-input"
-              style="display: none"
-              data-opcao="7"
-              data-etapa-tipo="7"
-              onchange="handleFileUpload('opcao7_1_input','opcao7_1_file_name')"
-            />
-            <span
-              id="opcao7_1_file_name"
-              data-opcao="7"
-              data-etapa-tipo="7"
-              class="file-name"
-            ></span>
-            <i
-              id="opcao7_1_trash"
-              style="display: none; cursor: pointer"
-              onclick="removeArquivo('opcao7_1_file_name')"
-              style="font-size: 24px"
-              class="fa"
-              >&#xf014;</i
-            >
-          </div>
-        </div>
-      </div>
-      <div id="submenu_botao7" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao8_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao8_1_input"
-            id="opcao8_1_label"
-          >
-            CONTRATAÇÃO DE ARMAZÉM LOGÍSTICO</label
-          >
-          <input
-            type="file"
-            id="opcao8_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="8"
-            data-etapa-tipo="8"
-            onchange="handleFileUpload('opcao8_1_input','opcao8_1_file_name')"
-          />
-          <span
-            id="opcao8_1_file_name"
-            data-opcao="8"
-            data-etapa-tipo="8"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao8_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao8_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
-        </div>
-      </div>
-      <div id="submenu_botao8" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao9_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao9_1_input"
-            id="opcao9_1_label"
-          >
-            COMPRA DE MÓVEIS E ELETRÔNICOS</label
-          >
-          <input
-            type="file"
-            id="opcao9_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="9"
-            data-etapa-tipo="9"
-            onchange="handleFileUpload('opcao9_1_input','opcao9_1_file_name')"
-          />
-          <span
-            id="opcao9_1_file_name"
-            data-opcao="9"
-            data-etapa-tipo="9"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao9_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao9_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
-        </div>
-      </div>
-      <div id="submenu_botao9" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao10_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao10_1_input"
-            id="opcao10_1_label"
-          >
-            ADEQUAÇÃO VISUAL DA SALA</label
-          >
-          <input
-            type="file"
-            id="opcao10_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="10"
-            data-etapa-tipo="10"
-            onchange="handleFileUpload('opcao10_1_input','opcao10_1_file_name')"
-          />
-          <span
-            id="opcao10_1_file_name"
-            data-opcao="10"
-            data-etapa-tipo="10"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao10_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao10_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
-        </div>
-      </div>
-      <div id="submenu_botao10" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao11_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao11_1_input"
-            id="opcao11_1_label"
-          >
-            CONTRATAÇÃO DE HOSPEDAGEM E DOMÍNIO</label
-          >
-          <input
-            type="file"
-            id="opcao11_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="11"
-            data-etapa-tipo="11"
-            onchange="handleFileUpload('opcao11_1_input','opcao11_1_file_name')"
-          />
-          <span
-            id="opcao11_1_file_name"
-            data-opcao="11"
-            data-etapa-tipo="11"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao11_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao11_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
-        </div>
-      </div>
-      <div id="submenu_botao11" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao12_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao12_1_input"
-            id="opcao12_1_label"
-          >
-            CRIAÇÃO DE EMAILS</label
-          >
-          <input
-            type="file"
-            id="opcao12_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="12"
-            data-etapa-tipo="12"
-            onchange="handleFileUpload('opcao12_1_input','opcao12_1_file_name')"
-          />
-          <span
-            id="opcao12_1_file_name"
-            data-opcao="12"
-            data-etapa-tipo="12"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao12_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao12_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
-        </div>
-      </div>
-      <div id="submenu_botao12" class="submenu">
-        <p>Anexe o arquivo correspondente a opçao concluída:</p>
-        <div>
-          <button
-            class="attach-file-button"
-            onclick="chooseFile('opcao13_1_input')"
-          >
-            <i class="fa-light fa-paperclip"></i> Anexar Arquivo
-          </button>
-          <label
-            class="attach-file-label"
-            for="opcao13_1_input"
-            id="opcao13_1_label"
-          >
-            CRIAÇÃO DE REDE SOCIAIS
-          </label>
-          <input
-            type="file"
-            id="opcao13_1_input"
-            class="file-input"
-            style="display: none"
-            data-opcao="13"
-            data-etapa-tipo="13"
-            onchange="handleFileUpload('opcao13_1_input','opcao13_1_file_name')"
-          />
-          <span
-            id="opcao13_1_file_name"
-            data-opcao="13"
-            data-etapa-tipo="13"
-            class="file-name"
-          ></span>
-          <i
-            id="opcao13_1_trash"
-            style="display: none; cursor: pointer"
-            onclick="removeArquivo('opcao13_1_file_name')"
-            style="font-size: 24px"
-            class="fa"
-            >&#xf014;</i
-          >
         </div>
       </div>
     </div>

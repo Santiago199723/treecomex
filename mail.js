@@ -1,12 +1,13 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyCvww91bXh1KIpVp59AdC94T8K06ymjvxs",
-  authDomain: "cadastro-orion-global.firebaseapp.com",
-  databaseURL: "https://cadastro-orion-global-default-rtdb.firebaseio.com",
-  projectId: "cadastro-orion-global",
-  storageBucket: "cadastro-orion-global.appspot.com",
-  messagingSenderId: "687560691012",
-  appId: "1:687560691012:web:5445782a7ee55a429e9b11",
-  measurementId: "G-69FTGZDCGF"
+  apiKey: "AIzaSyDXS-uF2k6MLySa0Q_ggo8uGjHMVRd_Ues",
+    authDomain: "cadastro-orion-global-86cb0.firebaseapp.com",
+    databaseURL:
+    "https://cadastro-orion-global-default-rtdb.firebaseio.com",
+    databaseURL: "https://cadastro-orion-global-86cb0-default-rtdb.firebaseio.com",
+    projectId: "cadastro-orion-global-86cb0",
+    storageBucket: "cadastro-orion-global-86cb0.appspot.com",
+    messagingSenderId: "899820207666",
+    appId: "1:899820207666:web:140d8fda3aca8e2634062b" 
 };
 
 firebase.initializeApp(firebaseConfig);
